@@ -1,37 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
-    display: flex;
-    justify-content: center;
+    margin: 0;
     padding: 20px;
 }
 
 .container {
-    background: #fff;
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
     padding: 20px;
     border-radius: 8px;
-    max-width: 1000px;
-    width: 100%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+h1 {
+    text-align: center;
+}
 h1, h2 {
     color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-.order-form {
-    display: flex;
-    flex-wrap: wrap;
+.section {
+    margin-bottom: 20px;
 }
 
-.section, .order-details {
-    flex: 1;
-    margin: 10px;
+.section h2 {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    color: red;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
 }
 
 label {
     display: block;
-    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+    font-size:12px;
 }
 
 input[type="text"],
@@ -40,48 +53,79 @@ input[type="date"],
 select,
 textarea {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
 }
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #ff5a5f;
+    outline: none;
+}
+
 textarea {
-    height:100px;
+    resize: vertical;
+    height:120px;
 }
+
 .order-details {
-    border-left: 1px solid #ddd;
-    padding-left: 20px;
+    margin-top: 20px;
+    border-top: 2px solid #eee;
+    padding-top: 20px;
+}
+
+.order-details h2 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
 }
 
 .order-item {
     display: flex;
     justify-content: space-between;
-    margin: 15px 0;
+    font-size: 16px;
+    margin-bottom: 10px;
 }
 
 .total {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
     display: flex;
     justify-content: space-between;
-    font-size: 1.2em;
-    margin-top: 10px;
-    font-weight: bold;
 }
 
-button {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 10px;
+button[type="submit"] {
+    background-color: #ff5a5f;
+    color: white;
     border: none;
+    padding: 12px;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
     width: 100%;
     margin-top: 20px;
+    transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #0056b3;
+button[type="submit"]:hover {
+    background-color: #e14c4f;
 }
 
-.section {
-    margin-right:40px;
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+label[for="terms"] {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
 }

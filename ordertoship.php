@@ -113,11 +113,10 @@ $discount_percentage = $original_price > 0 ? round((($original_price - $price) /
                     <option value="Yên Bái">Yên Bái</option>
                 </select>
                 
-                <label>Quận / Huyện *</label>
+                <!-- <label>Quận / Huyện *</label>
                 <select name="district" required>
                     <option value="Quận 1">Quận 1</option>
-                    <!-- Add other options as needed -->
-                </select>
+                </select> -->
                 
                 <label>Ngày giao hàng *</label>
                 <input type="date" name="delivery_date" required>
@@ -130,7 +129,10 @@ $discount_percentage = $original_price > 0 ? round((($original_price - $price) /
                     <!-- Add other options as needed -->
                 </select>
                 
-                <label>Lời nhắn [Cho người nhận]</label>
+                <label>Lời nhắn [cho người nhận]</label>
+                <textarea name="note" rows="4"></textarea>
+
+                <label style="color:red">Lưu ý [cho shop]</label>
                 <textarea name="note" rows="4"></textarea>
             </div>
 
