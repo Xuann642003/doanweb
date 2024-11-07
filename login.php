@@ -73,6 +73,17 @@ input[type="submit"]:hover {
         passwordInput.setAttribute("type", type);
         this.classList.toggle("fa-eye-slash");
     });
+
+    document.querySelectorAll('input[type="text"], input[type="password"]').forEach(input => {
+    input.addEventListener('input', function() {
+        if (this.value) {
+            this.style.paddingLeft = '40px';
+        } else {
+            this.style.paddingLeft = '10px';
+        }
+    });
+});
+
 </script>
 </body>
 <script src="script/script_login.js"></script>

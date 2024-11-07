@@ -15,8 +15,8 @@
     <nav class="navbar">
         <ul class="menu">
             <li class="dropdown">
-                <a href="#">HOA SINH NHẬT</a>
-                <ul class="dropdown-content">
+                <a href="#">HOA HỒNG</a>
+                <!-- <ul class="dropdown-content">
                     <li><a href="#">HOA SINH NHẬT SANG TRỌNG</a></li>
                     <li><a href="#">HOA SINH NHẬT GIÁ RẺ</a></li>
                     <li><a href="#">HOA TẶNG SINH NHẬT NGƯỜI YÊU</a></li>
@@ -25,32 +25,32 @@
                     <li><a href="#">LẴNG HOA TẶNG SINH NHẬT</a></li>
                     <li><a href="#">HOA HỒNG TẶNG SINH NHẬT</a></li>
                     <li><a href="#">GIỎ HOA SINH NHẬT</a></li>
-                </ul>
+                </ul> -->
             </li>
             <li class="dropdown">
-                <a href="#">HOA KHAI TRƯƠNG</a>
-                <ul class="dropdown-content">
+                <a href="#">HOA CÚC</a>
+                <!-- <ul class="dropdown-content">
                     <li><a href="#">LẴNG HOA KHAI TRƯƠNG</a></li>
                     <li><a href="#">HOA KHAI TRƯƠNG ĐẸP</a></li>
                     <li><a href="#">HOA KHAI TRƯƠNG GIÁ RẺ</a></li>
-                </ul>
+                </ul> -->
             </li>
-            <li class="dropdown">
-                <a href="#">LAN HỒ ĐIỆP</a>
-                <ul class="dropdown-content">
+            <li class="dropdown"> 
+                <a href="#">HOA HƯỚNG DƯƠNG</a>
+                <!-- <ul class="dropdown-content">
                     <li><a href="#">LAN HỒ ĐIỆP TRẮNG</a></li>
                     <li><a href="#">LAN HỒ ĐIỆP HỒNG</a></li>
                     <li><a href="#">LAN HỒ ĐIỆP VÀNG</a></li>
-                </ul>
+                </ul> -->
             </li>
             <li class="dropdown">
                 <a href="#">CHỦ ĐỀ</a>
-                <ul class="dropdown-content">
+                <!-- <ul class="dropdown-content">
                     <li><a href="#">HOA TÌNH YÊU</a></li>
                     <li><a href="#">HOA CƯỚI</a></li>
                     <li><a href="#">HOA CHÚC MỪNG</a></li>
                     <li><a href="#">HOA CHIA BUỒN</a></li>
-                </ul>
+                </ul> -->
             </li>
             <li><a href="#">THIẾT KẾ</a></li>
             <li><a href="#">HOA TƯƠI</a></li>
@@ -71,14 +71,30 @@
         </div>
 
         <div class="banner-right">
-            <img src="image/banner1.jpg" alt="Flower Image 1" class="active">
-            <img src="image/banner2.jpg" alt="Flower Image 2">
-            <img src="image/banner3.jpg" alt="Flower Image 3">
-            <!-- <img src="image/banner4.jpg" alt="Flower Image 4"> -->
+            <?php
+            include 'xuli/connect.php';
 
+            $sql = "SELECT tenanh FROM banner";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                $isActive = true; 
+                while ($row = $result->fetch_assoc()) {
+                    $tenanh = $row['tenanh'];
+                    echo '<img src="image/' . $tenanh . '" alt="Banner Image" class="' . ($isActive ? 'active' : '') . '">';
+                    $isActive = false; 
+                }
+            } else {
+                echo "No images found.";
+            }
+            $conn->close();
+            ?>
+
+            <!-- Navigation buttons -->
             <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
             <button class="next" onclick="moveSlide(1)">&#10095;</button>
         </div>
+
     </section>
 
     <?php include 'home.php'; ?>

@@ -15,8 +15,8 @@
     <nav class="navbar">
         <ul class="menu">
             <li class="dropdown">
-                <a href="#">HOA SINH NHẬT</a>
-                <ul class="dropdown-content">
+                <a href="#">HOA HỒNG</a>
+                <!-- <ul class="dropdown-content">
                     <li><a href="#">HOA SINH NHẬT SANG TRỌNG</a></li>
                     <li><a href="#">HOA SINH NHẬT GIÁ RẺ</a></li>
                     <li><a href="#">HOA TẶNG SINH NHẬT NGƯỜI YÊU</a></li>
@@ -25,32 +25,32 @@
                     <li><a href="#">LẴNG HOA TẶNG SINH NHẬT</a></li>
                     <li><a href="#">HOA HỒNG TẶNG SINH NHẬT</a></li>
                     <li><a href="#">GIỎ HOA SINH NHẬT</a></li>
-                </ul>
+                </ul> -->
             </li>
             <li class="dropdown">
-                <a href="#">HOA KHAI TRƯƠNG</a>
-                <ul class="dropdown-content">
+                <a href="#">HOA CÚC</a>
+                <!-- <ul class="dropdown-content">
                     <li><a href="#">LẴNG HOA KHAI TRƯƠNG</a></li>
                     <li><a href="#">HOA KHAI TRƯƠNG ĐẸP</a></li>
                     <li><a href="#">HOA KHAI TRƯƠNG GIÁ RẺ</a></li>
-                </ul>
+                </ul> -->
             </li>
             <li class="dropdown">
-                <a href="#">LAN HỒ ĐIỆP</a>
-                <ul class="dropdown-content">
+                <a href="#">HOA HƯỚNG DƯƠNG</a>
+                <!-- <ul class="dropdown-content">
                     <li><a href="#">LAN HỒ ĐIỆP TRẮNG</a></li>
                     <li><a href="#">LAN HỒ ĐIỆP HỒNG</a></li>
                     <li><a href="#">LAN HỒ ĐIỆP VÀNG</a></li>
-                </ul>
+                </ul> -->
             </li>
             <li class="dropdown">
                 <a href="#">CHỦ ĐỀ</a>
-                <ul class="dropdown-content">
+                <!-- <ul class="dropdown-content">
                     <li><a href="#">HOA TÌNH YÊU</a></li>
                     <li><a href="#">HOA CƯỚI</a></li>
                     <li><a href="#">HOA CHÚC MỪNG</a></li>
                     <li><a href="#">HOA CHIA BUỒN</a></li>
-                </ul>
+                </ul> -->
             </li>
             <li><a href="#">THIẾT KẾ</a></li>
             <li><a href="#">HOA TƯƠI</a></li>

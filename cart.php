@@ -96,11 +96,8 @@ if (isset($_GET['action']) && $_GET['action'] == "remove") {
         }
 
         .back-button {
-            margin-top: 20px;
             display: inline-block;
         }
-
-        /* Title Styling */
         h1 {
             font-size: 2em;
             color: #d40a5f;
@@ -108,22 +105,49 @@ if (isset($_GET['action']) && $_GET['action'] == "remove") {
             margin-bottom: 20px;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
+        .button-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .back-button, .checkout-button {
+            background-color: #d40a5f;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            text-align: center;
+            text-decoration: none;
+            width: 200px; 
+            height:30px;
+        }
+
+        .back-button:hover, .checkout-button:hover {
+            background-color: #b3084b;
+        }
+
+
+
     </style>
 </head>
 <body>
 
 <div class="cart-container">
-    <h1>Your Cart</h1>
+    <h1>Giỏ hàng của bạn</h1>
     
     <?php
     if (!empty($_SESSION['cart'])) { 
         echo '<table>';
         echo '<tr>';
-        echo '<th>Product</th>';
-        echo '<th>Price</th>';
-        echo '<th>Quantity</th>';
-        echo '<th>Total</th>';
-        echo '<th>Action</th>';
+        echo '<th>Tên sản phẩm</th>';
+        echo '<th>Giá</th>';
+        echo '<th>Số lượng</th>';
+        echo '<th>Tổng</th>';
+        echo '<th>Xác nhận</th>';
         echo '</tr>';
 
         // Loop through each item in the cart
@@ -145,7 +169,13 @@ if (isset($_GET['action']) && $_GET['action'] == "remove") {
     ?>
 
     <!-- Back Button -->
-    <a href="main.php" class="back-button">Go Back to Shopping</a>
+    <div class="button-container">
+    <a href="main.php" class="back-button">Trở lại</a>
+    <?php if (!empty($_SESSION['cart'])): ?>
+        <a href="checkout.php" class="checkout-button">Thanh Toán</a>
+    <?php endif; ?>
+</div>
+
 </div>
 
 </body>

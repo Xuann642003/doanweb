@@ -97,5 +97,8 @@ input[type="text"], input[type="password"] {
     cursor: pointer;
     padding-left: 50px;
 }
-
+input[type="text"]:not(:placeholder-shown),
+input[type="password"]:not(:placeholder-shown) {
+    padding-left: 40px;
+}
 
