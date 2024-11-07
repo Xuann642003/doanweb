@@ -251,7 +251,7 @@ body {
                 </ul>
             </li>
         </ul>
-        <a href="#">Giỏ hàng</a>
+        <a href="cart.php">Giỏ hàng</a>
             <div class="cart">
                 <span class="cart-icon">
                     <i class="fas fa-shopping-bag"></i>

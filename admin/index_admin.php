@@ -17,27 +17,29 @@
             <li>
                 <a onclick="toggleSubmenu('dashboard-submenu')"><i class="fas fa-tachometer-alt"></i> <span>Bảng điều khiển</span></a>
                 <ul class="submenu" id="dashboard-submenu">
-                    <li><a href="#">Thống kê</a></li>
-                    <li><a href="#">Hoạt động gần đây</a></li>
+                    <li><a href="#" onclick="loadPage('task/thongke.php')">Thống kê</a></li>
+                    <li><a href="#" onclick="loadContent('Hoạt động gần đây')">Hoạt động gần đây</a></li>
                 </ul>
             </li>
             <li>
                 <a onclick="toggleSubmenu('customer-submenu')"><i class="fas fa-user"></i> <span>Quản lý khách hàng</span></a>
                 <ul class="submenu" id="customer-submenu">
-                    <li><a href="#">Danh sách khách hàng</a></li>
-                    <li><a href="#">Phản hồi khách hàng</a></li>
+                    <li><a href="#" onclick="loadContent('Danh sách khách hàng')">Danh sách khách hàng</a></li>
+                    <li><a href="#" onclick="loadContent('Phản hồi khách hàng')">Phản hồi khách hàng</a></li>
                 </ul>
             </li>
             <li>
                 <a onclick="toggleSubmenu('product-submenu')"><i class="fas fa-seedling"></i> <span>Quản lý sản phẩm</span></a>
                 <ul class="submenu" id="product-submenu">
-                    <li><a href="#">Tất cả sản phẩm</a></li>
-                    <li><a href="#">Thêm sản phẩm mới</a></li>
-                    <li><a href="#">Danh mục</a></li>
+                    <li><a href="#" onclick="loadPage('task/tatcasanpham.php')">Tất cả sản phẩm</a></li>
+                    <li><a href="#" onclick="loadPage('task/themsanphammoi.php')">Thêm sản phẩm mới</a></li>
+                    <li><a href="#" onclick="loadPage('task/capnhatsanpham.php')">Cập nhật sản phẩm mới</a></li>
+                    <li><a href="#" onclick="loadPage('task/xoasanpham.php')">Xóa sản phẩm mới</a></li>
+                    <li><a href="#" onclick="loadContent('Danh mục sản phẩm')">Danh mục</a></li>
                 </ul>
             </li>
-            <li><a href="orders.php"><i class="fas fa-shopping-cart"></i> <span>Đơn hàng</span></a></li>
-            <li><a href="settings.php"><i class="fas fa-cog"></i> <span>Cài đặt</span></a></li>
+            <li><a href="#" onclick="loadContent('Đơn hàng')"><i class="fas fa-shopping-cart"></i> <span>Đơn hàng</span></a></li>
+            <li><a href="#" onclick="loadContent('Cài đặt')"><i class="fas fa-cog"></i> <span>Cài đặt</span></a></li>
         </ul>
     </div>
 
@@ -52,18 +54,9 @@
             </div>
         </header>
 
-        <div class="stats">
-            <div class="stat-card blue">9,823 Người truy cập</div>
-            <div class="stat-card yellow">Thống kê tháng</div>
-            <div class="stat-card red">Tổng doanh thu</div>
-        </div>
-
-        <div class="traffic-chart">
-            <h3>Lưu lượng truy cập</h3>
-            <p>Tháng 11, 2023</p>
-            <div style="height: 200px; background: #e0e0e0; border-radius: 8px;">
-                <!-- Placeholder for chart -->
-            </div>
+        <div id="content-area">
+            <!-- Nội dung sẽ được hiển thị tại đây -->
+            <p>Chào mừng đến với trang quản trị!</p>
         </div>
     </div>
 
@@ -74,11 +67,27 @@
         }
 
         function toggleSubmenu(id) {
-            // Kiểm tra nếu sidebar đang mở (không có lớp collapsed)
             if (!document.getElementById("sidebar").classList.contains("collapsed")) {
                 document.getElementById(id).classList.toggle("open");
-    }
-}
+            }
+        }
+
+        function loadContent(content) {
+            document.getElementById("content-area").innerHTML = `<h3>${content}</h3><p>Nội dung của ${content} sẽ được hiển thị ở đây.</p>`;
+        }
+
+        function loadPage(page) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", page, true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById("content-area").innerHTML = xhr.responseText;
+                } else {
+                    document.getElementById("content-area").innerHTML = "<p>Lỗi khi tải nội dung.</p>";
+                }
+            };
+            xhr.send();
+        }
     </script>
 
 </body>
