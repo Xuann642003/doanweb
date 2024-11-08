@@ -77,7 +77,7 @@
             echo '<p class="price">' . number_format($row["giagiamgia"], 0, ',', '.') . ' VND</p>';
             echo '<p class="old-price">' . number_format($row["giagoc"], 0, ',', '.') . ' VND</p>';
             // echo '<a href="infosp.php?id='.$row["id"].'"><button class="buy-button">ĐẶT HÀNG</button></a>';
-            echo '<a href="cart.php?action=add&id='.$row["id"].'"><button class="buy-button">ĐẶT HÀNG</button></a>';
+            echo '<a href="infosp.php?action=add&id='.$row["id"].'"><button class="buy-button">ĐẶT HÀNG</button></a>';
             echo '</div>';
         }
     } else {

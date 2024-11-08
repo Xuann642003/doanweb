@@ -33,8 +33,8 @@
                 <ul class="submenu" id="product-submenu">
                     <li><a href="#" onclick="loadPage('task/tatcasanpham.php')">Tất cả sản phẩm</a></li>
                     <li><a href="#" onclick="loadPage('task/themsanphammoi.php')">Thêm sản phẩm mới</a></li>
-                    <li><a href="#" onclick="loadPage('task/capnhatsanpham.php')">Cập nhật sản phẩm mới</a></li>
-                    <li><a href="#" onclick="loadPage('task/xoasanpham.php')">Xóa sản phẩm mới</a></li>
+                    <!-- <li><a href="#" onclick="loadPage('task/editsanpham.php')">Cập nhật sản phẩm mới</a></li>
+                    <li><a href="#" onclick="loadPage('task/xoasanpham.php')">Xóa sản phẩm mới</a></li> -->
                     <li><a href="#" onclick="loadContent('Danh mục sản phẩm')">Danh mục</a></li>
                 </ul>
             </li>
@@ -62,9 +62,19 @@
 
     <script>
         function toggleSidebar() {
-            document.getElementById("sidebar").classList.toggle("collapsed");
-            document.getElementById("main-content").classList.toggle("collapsed");
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("collapsed");
+    document.getElementById("main-content").classList.toggle("collapsed");
+
+        // Đóng tất cả submenu khi thanh bên được thu nhỏ
+        if (sidebar.classList.contains("collapsed")) {
+            const submenus = document.querySelectorAll(".submenu");
+            submenus.forEach(submenu => {
+                submenu.classList.remove("open");
+            });
         }
+    }
+
 
         function toggleSubmenu(id) {
             if (!document.getElementById("sidebar").classList.contains("collapsed")) {

@@ -84,7 +84,7 @@ body {
     position: absolute;
     background-color: white;
     min-width: 180px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     border-radius: 15px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
     padding: 10px 0;

@@ -1,7 +1,7 @@
 <!-- index.php -->
 <?php
 include 'header.php'; 
-include 'main_header.php';
+// include 'main_header.php';
 ?>
 <link rel="stylesheet" href="style/style_login.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -87,6 +87,3 @@ input[type="submit"]:hover {
 </script>
 </body>
 <script src="script/script_login.js"></script>
-<?php
-include 'footer.php'; 
-?>

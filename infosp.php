@@ -98,7 +98,7 @@ if (isset($_REQUEST["id"])) {
                 font-size: 12px;
             }
             .order-now {
-                width: 120px;
+                width: 140px;
                 background-color: orange;
                 color: white;
             }
@@ -217,10 +217,13 @@ if (isset($_REQUEST["id"])) {
                 <p><?php echo $row["mota"]; ?></p>
             </div>
             <div class="order-buttons">
-                <button class="order-now">
-                    <a style="text-decoration:none;" href="ordertoship.php?id=<?php echo $id; ?>&name=<?php echo urlencode($row["tenhoa"]); ?>&price=<?php echo $giagiamgia; ?>&original_price=<?php echo $giagoc; ?>"><h99 style="color:white">ĐẶT HÀNG</h99></a>
-                </button>
-                <button class="fast-order">ĐẶT NHANH</button>
+                    <?php
+                        echo '<a href="cart.php?action=add&id=' . $row["id"] . '&name=' . urlencode($row["tenhoa"]) . '&price=' . $giagiamgia . '&original_price=' . $giagoc . '">
+                        <button class="buy-button">THÊM VÀO GIỎ HÀNG</button>
+                         </a>';
+                     ?>
+
+                <!-- <button class="fast-order">ĐẶT NHANH</button> -->
             </div>
             <div class="info-section">
                 <span class="icon">🚀</span> Giao hoa NHANH trong 60 phút
@@ -248,7 +251,11 @@ if (isset($_REQUEST["id"])) {
                     <img src="<?php echo $related_image; ?>" alt="<?php echo $related_name; ?>" class="product-image">
                     <h3 class="product-name"><?php echo $related_name; ?></h3>
                     <p class="product-price"><?php echo number_format($related_price); ?> VND</p>
-                    <a href="product_detail.php?id=<?php echo $related_id; ?>" class="buy-button">ĐẶT HÀNG</a>
+                    <?php  
+                        echo '<a href="infosp.php?action=add&id=' . $related_id . '&name=' . urlencode($related_name) . '&price=' . $related_price . '">
+                            <button class="buy-button">THÊM VÀO GIỎ HÀNG</button>
+                        </a>'; 
+                    ?>
                 </div>
 
                 <?php

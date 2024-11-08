@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->query($sql) === TRUE) {
         echo "<script>
         alert('Dữ liệu đã được thêm thành công');
-        window.location.href = 'task/index_admin.php'; 
+        window.location.href = '../index_admin.php'; 
         </script>";
     } else {
         echo "Lỗi: " . $sql . "<br>" . $conn->error;
