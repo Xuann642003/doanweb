@@ -34,6 +34,7 @@ input[type="submit"]:hover {
     text-decoration: none; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 </style>
 <body>
     <div class="divchinh">
@@ -57,7 +58,7 @@ input[type="submit"]:hover {
             <input type="submit" value="LOGIN">
             <!-- <input type="button" value="REGISTER">         -->
             <div class="register">
-                <a href="#">Sign up</a>
+                <a href="register.php">Sign up</a>
             </div>
         </form>
 

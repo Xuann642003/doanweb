@@ -44,7 +44,7 @@
                 </ul> -->
             </li>
             <li class="dropdown">
-                <a href="#">CHỦ ĐỀ</a>
+                <a href="#">HOA LAN</a>
                 <!-- <ul class="dropdown-content">
                     <li><a href="#">HOA TÌNH YÊU</a></li>
                     <li><a href="#">HOA CƯỚI</a></li>
@@ -52,9 +52,9 @@
                     <li><a href="#">HOA CHIA BUỒN</a></li>
                 </ul> -->
             </li>
-            <li><a href="#">THIẾT KẾ</a></li>
-            <li><a href="#">HOA TƯƠI</a></li>
-            <li><a href="#">HOA TƯƠI GIẢM 30%</a></li>
+            <li><a href="#">HOA LILY</a></li>
+            <li><a href="#">HOA TULIP</a></li>
+            <li><a href="#">HOA BABY</a></li>
         </ul>
     </nav>
 
@@ -100,12 +100,12 @@
     <?php include 'home.php'; ?>
 
     <!-- Footer Section -->
-    <footer>
+    <!-- <footer>
         <div class="footer-container">
             <p>Gọi ngay: 091 849 1941 | 086 516 0360</p>
             <a href="#">Nhắn tin Zalo</a> | <a href="#">Nhắn tin Messenger</a>
         </div>
-    </footer>
+    </footer> -->
 </body>
 <script src="script/script_banner.js"></script>
 <script src="script/script_dropmenu.js"></script>

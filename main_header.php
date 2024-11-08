@@ -235,7 +235,7 @@ body {
                 <a href="#">Tài khoản</a>
                 <ul class="dropdown-content">
                     <li><a href="login.php">Đăng nhập</a></li>
-                    <li><a href="#">Đăng kí</a></li>
+                    <li><a href="register.php">Đăng kí</a></li>
                 </ul>
             </li>
         </ul> | 

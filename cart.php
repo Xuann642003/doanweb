@@ -1,7 +1,11 @@
+
 <?php
 session_start();
 include 'xuli/connect.php';
 
+if (!isset($_SESSION['tendangnhap'])) {
+    $_SESSION['tendangnhap'] = $_SESSION['username'];
+}
 // Initialize the cart if it's not already set
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();

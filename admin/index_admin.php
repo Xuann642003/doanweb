@@ -24,7 +24,7 @@
             <li>
                 <a onclick="toggleSubmenu('customer-submenu')"><i class="fas fa-user"></i> <span>Quản lý khách hàng</span></a>
                 <ul class="submenu" id="customer-submenu">
-                    <li><a href="#" onclick="loadContent('Danh sách khách hàng')">Danh sách khách hàng</a></li>
+                    <li><a href="#" onclick="loadPage('task/danhsachkhachhang.php')">Danh sách khách hàng</a></li>
                     <li><a href="#" onclick="loadContent('Phản hồi khách hàng')">Phản hồi khách hàng</a></li>
                 </ul>
             </li>
@@ -33,12 +33,13 @@
                 <ul class="submenu" id="product-submenu">
                     <li><a href="#" onclick="loadPage('task/tatcasanpham.php')">Tất cả sản phẩm</a></li>
                     <li><a href="#" onclick="loadPage('task/themsanphammoi.php')">Thêm sản phẩm mới</a></li>
+                    <li><a href="#" onclick="loadPage('task/nhaphang.php')">Nhập sản phẩm </a></li>
                     <!-- <li><a href="#" onclick="loadPage('task/editsanpham.php')">Cập nhật sản phẩm mới</a></li>
                     <li><a href="#" onclick="loadPage('task/xoasanpham.php')">Xóa sản phẩm mới</a></li> -->
-                    <li><a href="#" onclick="loadContent('Danh mục sản phẩm')">Danh mục</a></li>
+                    <li><a href="#" onclick="loadPage('task/themdanhmuc.php')">Danh mục</a></li>
                 </ul>
             </li>
-            <li><a href="#" onclick="loadContent('Đơn hàng')"><i class="fas fa-shopping-cart"></i> <span>Đơn hàng</span></a></li>
+            <li><a href="#" onclick="loadPage('task/donhang.php')"><i class="fas fa-shopping-cart"></i> <span>Đơn hàng</span></a></li>
             <li><a href="#" onclick="loadContent('Cài đặt')"><i class="fas fa-cog"></i> <span>Cài đặt</span></a></li>
         </ul>
     </div>
@@ -47,11 +48,11 @@
     <div class="main-content" id="main-content">
         <header>
             <h2>Bảng điều khiển</h2>
-            <div>
+            <!-- <div>
                 <i class="fas fa-bell"></i> 5
                 <i class="fas fa-envelope"></i> 15
                 <i class="fas fa-user-circle"></i>
-            </div>
+            </div> -->
         </header>
 
         <div id="content-area">

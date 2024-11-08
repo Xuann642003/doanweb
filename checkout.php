@@ -1,17 +1,17 @@
 <?php
 session_start();
-include 'xuli/connect.php';
-
-if (empty($_SESSION['cart'])) {
-    echo "<p>Your cart is empty. <a href='main.php'>Go back to shopping</a></p>";
+if (!isset($_SESSION['tendangnhap'])) {
+    header("Location: login.php");
     exit();
 }
 
-$total_amount = 0;
+$tendangnhap = $_SESSION['tendangnhap'];
+$hoten = $_SESSION['hoten'] ?? 'Guest'; // Display name or fallback to 'Guest'
 
+$total_amount = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Save order details to the database
-    $ngaydat = date("Y-m-d H:i:s"); // Current timestamp in the format YYYY-MM-DD HH:MM:SS
+    include 'xuli/connect.php';
+    $ngaydat = date("Y-m-d H:i:s"); // Current timestamp
 
     foreach ($_SESSION['cart'] as $product) {
         $tensanpham = $product["tenhoa"];
@@ -19,17 +19,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $soluong = $product["quantity"];
         $tong = $gia * $soluong;
 
-        // Insert into the 'orders' table, including the ngaydat
-        $query = "INSERT INTO orders (tensanpham, gia, soluong, tong, ngaydat) VALUES (?, ?, ?, ?, ?)";
+        // Insert order details into the database
+        $query = "INSERT INTO orders (tensanpham, gia, soluong, tong, ngaydat, tendangnhap) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("siids", $tensanpham, $gia, $soluong, $tong, $ngaydat);
+        $stmt->bind_param("siidss", $tensanpham, $gia, $soluong, $tong, $ngaydat, $tendangnhap);
         $stmt->execute();
+        
     }
 
-    // Clear the cart
-    $_SESSION['cart'] = array();
-    
-    // Redirect to a thank-you page or display a success message
+    $_SESSION['cart'] = array(); // Clear the cart
     header("Location: thankyou.php");
     exit();
 }
@@ -106,6 +104,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 <div class="checkout-container">
+    <!-- Display user information -->
+    <div style="text-align: center; margin-bottom: 20px;">
+        <p><strong>Xin chào, <?php echo htmlspecialchars($hoten); ?> (<?php echo htmlspecialchars($tendangnhap); ?>)!</strong></p>
+    </div>
+
     <h1>Thông tin sản phẩm</h1>
     <table class="checkout-table">
         <tr>

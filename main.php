@@ -1,17 +1,12 @@
-<!-- index.php -->
 <?php
-include 'header.php'; 
+session_start();
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+} else {
+    header("Location: xuli_login.php");
+    exit();
+}
 ?>
-<?php
-    session_start(); 
-    if (isset($_SESSION['username'])) {
-        $username = $_SESSION['username'];
-    } else {
-        header("Location: xuli_login.php");
-        exit(); 
-    }
-?>
-<!-- Main Header with Logo, Search, and Account Information -->
 <style>
 .cart {
     position: relative;
@@ -264,5 +259,5 @@ body {
 
 <?php
 include 'content1.php'; 
-include 'footer.php'; 
+include 'intro_footer.php'; 
 ?>

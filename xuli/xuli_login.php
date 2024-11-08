@@ -24,6 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if login is successful
     if ($result->num_rows > 0) {
+        // Clear the previous session data
+        session_unset();
+        session_destroy();
+        session_start(); // Start a new session after destroying the old one
+
         // Store the username in the session
         $_SESSION['username'] = $username;
 

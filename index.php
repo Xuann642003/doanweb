@@ -4,6 +4,6 @@ include 'header.php';
 include 'main_header.php';
 include 'content.php'; 
 // include 'home.php'; 
-include 'footer.php'; 
+// include 'footer.php'; 
 include 'intro_footer.php'; 
 ?>
