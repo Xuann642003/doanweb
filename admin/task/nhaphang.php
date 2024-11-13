@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<p style='color:green;'>Số lượng đã được cập nhật thành công.</p>";
 
             // Insert into the lichsunhaphang table
-            $historyQuery = "INSERT INTO lichsunhaphang (tensanpham, soluong, ngaynhap) VALUES (?, ?, ?)";
+            $historyQuery = "INSERT INTO lichsunhaphang (id,tensanpham, soluong, ngaynhap) VALUES (?,?, ?, ?)";
             $historyStmt = $conn->prepare($historyQuery);
             $historyStmt->bind_param("iis", $productId, $quantity, $entryDate);
 

@@ -23,7 +23,7 @@
         
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                echo "<option value='" . $row['id'] . "'>" . $row['loaihoa'] . "</option>";
+                echo "<option value='" . $row['loaihoa'] . "'>" . $row['loaihoa'] . "</option>";
             }
         } else {
             echo "<option value=''>Không có loại hoa</option>";
@@ -46,6 +46,9 @@
     <label>Mô Tả:</label>
     <textarea name="mota" rows="4" required></textarea><br>
     
+    <label>Số lượng:</label>
+    <input type="number" name="soluongton" required><br>
+
     <input type="submit" value="Thêm">
 </form>
 

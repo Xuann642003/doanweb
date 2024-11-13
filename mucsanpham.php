@@ -236,10 +236,8 @@ body {
         <p style="margin-left:20px">Say it with Flowers</p>
     </div>
     <div class="search-bar">
-    <form action="mucsanpham.php" method="GET">
-        <input type="text" name="class" placeholder="Tìm kiếm" required>
-        <button type="submit">🔍</button>
-    </form>
+        <input type="text" placeholder="Tìm kiếm">
+        <button>🔍</button>
     </div>
     <div class="account-info">
         <ul class="account-menu">
@@ -262,6 +260,6 @@ body {
 </header>
 
 <?php
-include 'content1.php'; 
+include 'content2.php'; 
 include 'intro_footer.php'; 
 ?>

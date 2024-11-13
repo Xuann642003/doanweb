@@ -8,9 +8,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $giagiamgia = $_POST['giagiamgia'];
     $giagoc = $_POST['giagoc'];
     $mota = $_POST['mota'];
+    $soluongton = $_POST['soluongton'];
 
-    $sql = "INSERT INTO sanpham (loai, hinhanh, tenhoa, giagiamgia, giagoc, mota) 
-            VALUES ('$loai', 'image/$hinhanh', '$tenhoa', '$giagiamgia', '$giagoc', '$mota')";
+    $sql = "INSERT INTO sanpham ( hinhanh, tenhoa, giagiamgia, giagoc, mota , loai ,soluongton) 
+            VALUES ( 'image/$hinhanh', '$tenhoa', '$giagiamgia', '$giagoc', '$mota' ,'$loai', '$soluongton')";
 
     if ($conn->query($sql) === TRUE) {
         echo "<script>

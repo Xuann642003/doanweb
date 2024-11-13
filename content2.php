@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +17,7 @@
     <nav class="navbar">
         <ul class="menu">
             <li class="dropdown">
-                <a href="./mucsanpham.php">HOA HỒNG</a>
+                <a href="mucsanpham.php?class=hoahong">HOA HỒNG</a>
                 <!-- <ul class="dropdown-content">
                     <li><a href="#">HOA SINH NHẬT SANG TRỌNG</a></li>
                     <li><a href="#">HOA SINH NHẬT GIÁ RẺ</a></li>
@@ -28,7 +30,7 @@
                 </ul> -->
             </li>
             <li class="dropdown">
-                <a href="./mucsanpham.php">HOA CÚC</a>
+                <a href="mucsanpham.php?class=hoacuc">HOA CÚC</a>
                 <!-- <ul class="dropdown-content">
                     <li><a href="#">LẴNG HOA KHAI TRƯƠNG</a></li>
                     <li><a href="#">HOA KHAI TRƯƠNG ĐẸP</a></li>
@@ -36,7 +38,7 @@
                 </ul> -->
             </li>
             <li class="dropdown"> 
-                <a href="./mucsanpham.php">HOA HƯỚNG DƯƠNG</a>
+                <a href="mucsanpham.php?class=hoahuongduong">HOA HƯỚNG DƯƠNG</a>
                 <!-- <ul class="dropdown-content">
                     <li><a href="#">LAN HỒ ĐIỆP TRẮNG</a></li>
                     <li><a href="#">LAN HỒ ĐIỆP HỒNG</a></li>
@@ -44,7 +46,7 @@
                 </ul> -->
             </li>
             <li class="dropdown">
-                <a href="./mucsanpham.php">HOA LAN</a>
+                <a href="mucsanpham.php?class=hoalan">HOA LAN</a>
                 <!-- <ul class="dropdown-content">
                     <li><a href="#">HOA TÌNH YÊU</a></li>
                     <li><a href="#">HOA CƯỚI</a></li>
@@ -52,52 +54,16 @@
                     <li><a href="#">HOA CHIA BUỒN</a></li>
                 </ul> -->
             </li>
-            <li><a href="./mucsanpham.php">HOA LILY</a></li>
-            <li><a href="./mucsanpham.php">HOA TULIP</a></li>
-            <li><a href="./mucsanpham.php">HOA BABY</a></li>
+            <li><a href="mucsanpham.php?class=hoalily">HOA LILY</a></li>
+            <li><a href="mucsanpham.php?class=hoatulip">HOA TULIP</a></li>
+            <li><a href="mucsanpham.php?class=hoababy">HOA BABY</a></li>
         </ul>
     </nav>
 
-    <?php include 'advertisement.php'; ?>
-
    <!-- Banner Section -->
-    <section class="banner">
-        <div class="banner-left">
-            <h2>More Moments to Shine</h2>
-            <p>Happy Vietnamese Women’s Day</p>
-            <p>Hoa xinh yêu chỉ từ 300K</p>
-            <p>Miễn phí giao hoa nội thành TP.HCM, HN</p>
-            <p>Tặng kèm thiệp chúc mừng</p>
-        </div>
+    
 
-        <div class="banner-right">
-            <?php
-            include 'xuli/connect.php';
-
-            $sql = "SELECT tenanh FROM banner";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                $isActive = true; 
-                while ($row = $result->fetch_assoc()) {
-                    $tenanh = $row['tenanh'];
-                    echo '<img src="image/' . $tenanh . '" alt="Banner Image" class="' . ($isActive ? 'active' : '') . '">';
-                    $isActive = false; 
-                }
-            } else {
-                echo "No images found.";
-            }
-            $conn->close();
-            ?>
-
-            <!-- Navigation buttons -->
-            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="next" onclick="moveSlide(1)">&#10095;</button>
-        </div>
-
-    </section>
-
-    <?php include 'home.php'; ?>
+    <?php include 'home1.php'; ?>
 
     <!-- Footer Section -->
     <!-- <footer>
