@@ -1,12 +1,17 @@
 <?php
-// Retrieve product details from URL
-$product_id = isset($_GET['id']) ? $_GET['id'] : '';
-$product_name = isset($_GET['name']) ? $_GET['name'] : '';
-$price = isset($_GET['price']) ? $_GET['price'] : 0;
-$original_price = isset($_GET['original_price']) ? $_GET['original_price'] : 0;
+session_start();
+if (isset($_SESSION['selected_product'])) {
+    $product = $_SESSION['selected_product'];
+    $product_id = $product['id'];
+    $product_name = $product['name'];
+    $price = $product['price'];
+    $original_price = $product['original_price'];
+} else {
+    echo "Không có sản phẩm được chọn.";
+    exit();
+}
 
-// Calculate discount percentage if necessary
-$discount_percentage = $original_price > 0 ? round((($original_price - $price) / $original_price) * 100) : 0;
+// $discount_percentage = $original_price > 0 ? round((($original_price - $price) / $original_price) * 100) : 0;
 ?>
 
 <!DOCTYPE html>

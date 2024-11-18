@@ -2,88 +2,64 @@
 session_start();
 include "../xuli_admin/connect.php";
 
-// Fetch the latest orders (assuming orders are grouped by timestamp)
-$query = "SELECT * FROM orders ORDER BY ngaydat DESC LIMIT 10"; // Adjust limit if needed
-$result = $conn->query($query);
-
-if ($result->num_rows > 0) {
-    $orders = $result->fetch_all(MYSQLI_ASSOC);
-} else {
-    echo "<p>No recent orders found. <a href='main.php'>Go back to shopping</a></p>";
+if (!isset($_SESSION['la_admin']) || $_SESSION['la_admin'] !== true) {
+    header('Location: dang_nhap.php');
     exit();
 }
+
+$truy_van = "SELECT * FROM don_hang ORDER BY id_don_hang DESC";
+$ket_qua = $conn->query($truy_van);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin đơn hàng</title>
-    <style>
-        /* Styling */
-        .order-container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-        }
-
-        .order-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        .order-table th, .order-table td {
-            padding: 15px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .order-table th {
-            background-color: #f8f9fa;
-        }
-
-        h1 {
-            font-size: 2em;
-            color: #d40a5f;
-            text-align: center;
-            margin-bottom: 20px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
-    </style>
+    <title>Quan ly Don Hang</title>
+    <link rel="stylesheet" href="style/admin_style.css">
 </head>
 <body>
-
-<div class="order-container">
-    <h1>Thông tin đơn hàng</h1>
-    <table class="order-table">
-        <tr>
-            <th>Tên khách hàng</th>
-            <th>Mã đơn hàng</th>
-            <th>Tên sản phẩm</th>
-            <th>Giá</th>
-            <th>Số lượng</th>
-            <th>Tổng</th>
-            <th>Ngày đặt</th>           
-        </tr>
-        <?php
-        foreach ($orders as $order) {
-            echo '<tr>';
-            echo '<td>'. $order["tendangnhap"]. '</td>';
-            echo '<td>' . $order["id"] . '</td>';
-            echo '<td>' . $order["tensanpham"] . '</td>';
-            echo '<td>' . number_format($order["gia"], 0, ',', '.') . ' VND</td>';
-            echo '<td>' . $order["soluong"] . '</td>';
-            echo '<td>' . number_format($order["tong"], 0, ',', '.') . ' VND</td>';
-            echo '<td>' . $order["ngaydat"] . '</td>';
-            echo '</tr>';
-        }
-        ?>
-    </table>
-
-</div>
-
+    <div class="container">
+        <h1>Quan ly Don Hang</h1>
+        <table border="1" cellspacing="0" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nguoi Gui</th>
+                    <th>Nguoi Nhan</th>
+                    <th>San Pham</th>
+                    <th>Gia (VND)</th>
+                    <th>Ngay Giao</th>
+                    <th>Trang Thai</th>
+                    <th>Hanh Dong</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($ket_qua->num_rows > 0) {
+                    while ($dong = $ket_qua->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $dong['id_don_hang'] . "</td>";
+                        echo "<td>" . htmlspecialchars($dong['ten_nguoi_gui']) . "</td>";
+                        echo "<td>" . htmlspecialchars($dong['ten_nguoi_nhan']) . "</td>";
+                        echo "<td>" . htmlspecialchars($dong['ten_san_pham']) . "</td>";
+                        echo "<td>" . number_format($dong['gia']) . "</td>";
+                        echo "<td>" . htmlspecialchars($dong['ngay_giao']) . "</td>";
+                        echo "<td>" . htmlspecialchars($dong['trang_thai']) . "</td>";
+                        echo "<td>
+                            <a href='xem_don_hang.php?id_don_hang=" . $dong['id_don_hang'] . "'>Xem</a> |
+                            <a href='sua_don_hang.php?id_don_hang=" . $dong['id_don_hang'] . "'>Sua</a> |
+                            <a href='xoa_don_hang.php?id_don_hang=" . $dong['id_don_hang'] . "' onclick='return confirm(\"Ban co chac muon xoa?\");'>Xoa</a>
+                        </td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='8'>Khong co don hang nao.</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

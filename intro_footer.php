@@ -51,14 +51,14 @@
         <p>Hotline: 1900 633 045 - 0865 160 360</p>
         <p>Email: sales@flowercorner.vn</p>
         <div class="scanme">
-            <img src="path/to/qr_code.png" alt="QR Code">
+            <img src="image/qr.png" alt="QR Code">
             <p>Scan me</p>
         </div>
     </div>
     <div class="column">
         <h3>CHĂM SÓC KHÁCH HÀNG</h3>
         <p>Giới Thiệu</p>
-        <p>Liên Hệ</p>
+        <p><a style="text-decoration:none" href="lienhe.php">Liên Hệ</a></p>
         <p>Chính Sách Vận Chuyển</p>
         <p>Câu Hỏi Thường Gặp</p>
         <p>Hình Thức Thanh Toán</p>

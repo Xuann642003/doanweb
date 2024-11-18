@@ -22,9 +22,4 @@
 </style>
 <div class="top-header">
     <p>HOTLINE: 1900 633 045 | 0379 706 289</p>
-        <!-- <div class="social-media">
-            <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
-            <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
-            <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
-        </div> -->
 </div>

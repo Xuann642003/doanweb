@@ -6,12 +6,15 @@ if (!isset($_SESSION['tendangnhap'])) {
 }
 
 $tendangnhap = $_SESSION['tendangnhap'];
-$hoten = $_SESSION['hoten'] ?? 'Guest'; // Display name or fallback to 'Guest'
+$hoten = $_SESSION['hoten'] ?? 'Guest'; 
+
+
+
 
 $total_amount = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include 'xuli/connect.php';
-    $ngaydat = date("Y-m-d H:i:s"); // Current timestamp
+    $ngaydat = date("Y-m-d H:i:s"); 
 
     foreach ($_SESSION['cart'] as $product) {
         $tensanpham = $product["tenhoa"];
@@ -19,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $soluong = $product["quantity"];
         $tong = $gia * $soluong;
 
-        // Insert order details into the database
         $query = "INSERT INTO orders (tensanpham, gia, soluong, tong, ngaydat, tendangnhap) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("siidss", $tensanpham, $gia, $soluong, $tong, $ngaydat, $tendangnhap);
@@ -27,8 +29,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
     }
 
-    $_SESSION['cart'] = array(); // Clear the cart
-    header("Location: thankyou.php");
+    $_SESSION['selected_product'] = [
+        'id' => $product['id'],
+        'name' => $product['tenhoa'],
+        'price' => $product['price'],
+        'original_price' => $product['original_price']
+    ];
+    header("Location: ordertoship.php");
     exit();
 }
 ?>
@@ -39,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <style>
-        /* Styling */
         .checkout-container {
             width: 80%;
             margin: 0 auto;
@@ -104,7 +110,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 <div class="checkout-container">
-    <!-- Display user information -->
     <div style="text-align: center; margin-bottom: 20px;">
         <p><strong>Xin chào, <?php echo htmlspecialchars($hoten); ?> (<?php echo htmlspecialchars($tendangnhap); ?>)!</strong></p>
     </div>
@@ -135,7 +140,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </tr>
     </table>
 
-    <!-- Confirm Purchase Button -->
     <form method="post" action="checkout.php">
         <button type="submit" class="confirm-button">Xác nhận thanh toán</button>
         <a href="main.php" class="cancel-button">Hủy</a>

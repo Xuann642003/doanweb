@@ -60,6 +60,9 @@ input[type="submit"]:hover {
             <div class="register">
                 <a href="register.php">Sign up</a>
             </div>
+            <div class="register">
+                <a href="index.php">Return</a>
+            </div>
         </form>
 
         </div>

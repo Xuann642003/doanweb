@@ -11,56 +11,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <ul class="menu">
-            <li class="dropdown">
-                <a href="./mucsanpham.php">HOA HỒNG</a>
-                <!-- <ul class="dropdown-content">
-                    <li><a href="#">HOA SINH NHẬT SANG TRỌNG</a></li>
-                    <li><a href="#">HOA SINH NHẬT GIÁ RẺ</a></li>
-                    <li><a href="#">HOA TẶNG SINH NHẬT NGƯỜI YÊU</a></li>
-                    <li><a href="#">HOA TẶNG SINH NHẬT MẸ</a></li>
-                    <li><a href="#">HOA TẶNG SINH NHẬT BẠN</a></li>
-                    <li><a href="#">LẴNG HOA TẶNG SINH NHẬT</a></li>
-                    <li><a href="#">HOA HỒNG TẶNG SINH NHẬT</a></li>
-                    <li><a href="#">GIỎ HOA SINH NHẬT</a></li>
-                </ul> -->
-            </li>
-            <li class="dropdown">
-                <a href="./mucsanpham.php">HOA CÚC</a>
-                <!-- <ul class="dropdown-content">
-                    <li><a href="#">LẴNG HOA KHAI TRƯƠNG</a></li>
-                    <li><a href="#">HOA KHAI TRƯƠNG ĐẸP</a></li>
-                    <li><a href="#">HOA KHAI TRƯƠNG GIÁ RẺ</a></li>
-                </ul> -->
-            </li>
-            <li class="dropdown"> 
-                <a href="./mucsanpham.php">HOA HƯỚNG DƯƠNG</a>
-                <!-- <ul class="dropdown-content">
-                    <li><a href="#">LAN HỒ ĐIỆP TRẮNG</a></li>
-                    <li><a href="#">LAN HỒ ĐIỆP HỒNG</a></li>
-                    <li><a href="#">LAN HỒ ĐIỆP VÀNG</a></li>
-                </ul> -->
-            </li>
-            <li class="dropdown">
-                <a href="./mucsanpham.php">HOA LAN</a>
-                <!-- <ul class="dropdown-content">
-                    <li><a href="#">HOA TÌNH YÊU</a></li>
-                    <li><a href="#">HOA CƯỚI</a></li>
-                    <li><a href="#">HOA CHÚC MỪNG</a></li>
-                    <li><a href="#">HOA CHIA BUỒN</a></li>
-                </ul> -->
-            </li>
-            <li><a href="./mucsanpham.php">HOA LILY</a></li>
-            <li><a href="./mucsanpham.php">HOA TULIP</a></li>
-            <li><a href="./mucsanpham.php">HOA BABY</a></li>
-        </ul>
-    </nav>
+    <?php
+        include 'xuli/connect.php';
+
+        $sql = "SELECT * FROM loaihoa";
+        $result = $conn->query($sql);
+
+        echo '<nav class="navbar">
+                <ul class="menu">';
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<li class="dropdown">
+                        <a href="./mucsanpham.php?class=' . $row['loaihoa'] . '">' . strtoupper(str_replace('hoa', 'HOA ', $row['loaihoa'])) . '</a>
+                    </li>';
+            }
+        } else {
+            echo '<li>Không có dữ liệu</li>';
+        }
+        echo '   </ul>
+            </nav>';
+
+        $conn->close();
+    ?>
 
     <?php include 'advertisement.php'; ?>
 
-   <!-- Banner Section -->
     <section class="banner">
         <div class="banner-left">
             <h2>More Moments to Shine</h2>

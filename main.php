@@ -210,7 +210,113 @@ body {
     text-decoration: none;
     color: #333;
 }
+.fixed-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background-color: #e81c62;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    gap: 35px;
+}
 
+.fixed-bar a {
+    text-decoration: none;
+    color: white;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s ease;
+}
+
+.fixed-bar a:hover {
+    color: #ffd7e0;
+}
+
+.fixed-bar img {
+    width: 20px;
+    height: 20px;
+}
+
+.chat-button {
+    background-color: #ffffff; 
+    height:20px;
+    color: #e91e63; 
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure button stays below the chat box */
+}
+
+.chat-button:hover {
+    background-color: #f8bbd0; 
+}
+
+#chatBox {
+    display: none;
+    position: fixed;  /* Change from absolute to fixed */
+    bottom: 60px;  /* Position above the chat button */
+    right: 20px;
+    width: 350px;
+    height: 450px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1001; /* Ensure it's above other content */
+}
+
+#chatHeader {
+    background-color: #e91e63;
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+}
+
+#chatContent {
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+}
+
+#chatInput {
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
+#chatInput input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-bottom-left-radius: 10px;
+}
+
+#chatInput button {
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <header class="main-header">
@@ -260,8 +366,52 @@ body {
         <a href="#">Thanh toán</a>
     </div>
 </header>
+<div class="fixed-bar">
+    <a href="tel:0918491941">
+        <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Call">
+        091 849 1941
+    </a>
+    <a href="https://zalo.me" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/3536/3536445.png" alt="Zalo">
+        Nhắn Tin Zalo
+    </a>
+    <a href="tel:0865160360">
+        <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Call">
+        086 516 0360
+    </a>
+    <button class="chat-button" id="chatButton">Chat với chúng tôi</button>
+</div>
+
+<div id="chatBox">
+    <div id="chatHeader">Hỗ trợ trực tuyến</div>
+    <div id="chatContent">
+        <p>Chào bạn! Làm thế nào để chúng tôi có thể giúp bạn?</p>
+    </div>
+    <div id="chatInput">
+        <input type="text" placeholder="Nhập tin nhắn...">
+        <button>Gửi</button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const chatButton = document.getElementById('chatButton');
+        const chatBox = document.getElementById('chatBox');
+
+        chatButton.addEventListener('click', () => {
+            if (chatBox.style.display === 'none' || chatBox.style.display === '') {
+                chatBox.style.display = 'block';
+            } else {
+                chatBox.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+
 
 <?php
 include 'content1.php'; 
+echo '<hr>';
 include 'intro_footer.php'; 
 ?>

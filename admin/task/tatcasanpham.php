@@ -29,7 +29,7 @@ while ($row = $result->fetch_assoc()) {
     echo '<tr>';
     echo '<td>' . $row["id"] . '</td>';
     echo '<td>' . $row["loai"] . '</td>';
-    echo '<td><img src="' . $row["hinhanh"] . '" width="50" alt="Image"></td>';
+    echo '<td><img src="../' . $row["hinhanh"] . '" width="100" alt="Image"></td>';
     echo '<td>' . $row["tenhoa"] . '</td>';
     echo '<td>' . number_format($row["giagiamgia"]) . '</td>';
     echo '<td>' . number_format($row["giagoc"]) . '</td>';
