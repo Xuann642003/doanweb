@@ -47,9 +47,9 @@
 
 <div class="footer">
     <div class="column logo">
-        <img src="path/to/logo.png" alt="FlowerCorner Logo">
-        <p>Hotline: 1900 633 045 - 0865 160 360</p>
-        <p>Email: sales@flowercorner.vn</p>
+        <img src="image/logo.jpg">
+        <p>Hotline: 1900 006 004 - 0379 706 289</p>
+        <p>Email: thuylinh@flowercorner.vn</p>
         <div class="scanme">
             <img src="image/qr.png" alt="QR Code">
             <p>Scan me</p>

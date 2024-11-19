@@ -236,8 +236,10 @@ body {
         <p style="margin-left:20px">Say it with Flowers</p>
     </div>
     <div class="search-bar">
-        <input type="text" placeholder="Tìm kiếm">
-        <button>🔍</button>
+    <form action="mucsanpham.php" method="GET">
+        <input type="text" name="class" placeholder="Tìm kiếm" required>
+        <button type="submit">🔍</button>
+    </form>
     </div>
     <div class="account-info">
         <ul class="account-menu">

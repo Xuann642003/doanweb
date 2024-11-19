@@ -63,24 +63,24 @@
 
     <h1></h1>
     <div class="product-container">
-    <?php
-$class = isset($_GET['class']) ? $_GET['class'] : 'hoahong'; // Mặc định là 'hoahong' nếu không có class nào được chọn
-$sql = "SELECT * FROM sanpham WHERE loai = '$class'";
+<?php
+    $class = isset($_GET['class']) ? $_GET['class'] : 'hoahong'; 
+    $sql = "SELECT * FROM sanpham WHERE loai = '$class'";
 
-$result = $conn->query($sql);
+    $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        echo '<div class="product-card">';
-        echo '<img src="' . $row["hinhanh"] . '" alt="' . $row["tenhoa"] . '">';
-        echo '<h3>' . $row["tenhoa"] . '</h3>';
-        echo '<p class="price">' . number_format($row["giagiamgia"], 0, ',', '.') . ' VND</p>';
-        echo '<p class="old-price">' . number_format($row["giagoc"], 0, ',', '.') . ' VND</p>';
-        echo '<a href="infosp.php?action=add&id='.$row["id"].'"><button class="buy-button">ĐẶT HÀNG</button></a>';
-        echo '</div>';
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo '<div class="product-card">';
+            echo '<img src="' . $row["hinhanh"] . '" alt="' . $row["tenhoa"] . '">';
+            echo '<h3>' . $row["tenhoa"] . '</h3>';
+            echo '<p class="price">' . number_format($row["giagiamgia"], 0, ',', '.') . ' VND</p>';
+            echo '<p class="old-price">' . number_format($row["giagoc"], 0, ',', '.') . ' VND</p>';
+            echo '<a href="infosp.php?action=add&id='.$row["id"].'"><button class="buy-button">ĐẶT HÀNG</button></a>';
+            echo '</div>';
+        }
+    } else {
+        echo "<p>No products available</p>";
     }
-} else {
-    echo "<p>No products available</p>";
-}
-$conn->close();
+    $conn->close();
 ?>

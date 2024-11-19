@@ -65,7 +65,6 @@
             $conn->close();
             ?>
 
-            <!-- Navigation buttons -->
             <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
             <button class="next" onclick="moveSlide(1)">&#10095;</button>
         </div>
@@ -74,14 +73,32 @@
 
     <?php include 'home.php'; ?>
 
-    <!-- Footer Section -->
-    <!-- <footer>
-        <div class="footer-container">
-            <p>Gọi ngay: 091 849 1941 | 086 516 0360</p>
-            <a href="#">Nhắn tin Zalo</a> | <a href="#">Nhắn tin Messenger</a>
-        </div>
-    </footer> -->
 </body>
+<script>
+    let currentSlide = 0; 
+let slides = document.querySelectorAll('.banner-right img');
+let totalSlides = slides.length;
+
+function moveSlide(step) {
+    currentSlide = (currentSlide + step + totalSlides) % totalSlides; 
+    updateSlides();
+}
+
+function updateSlides() {
+    slides.forEach((slide, index) => {
+        slide.classList.remove('active'); 
+        if (index === currentSlide) {
+            slide.classList.add('active'); 
+        }
+    });
+}
+
+setInterval(() => {
+    moveSlide(1); 
+}, 5000);
+
+updateSlides();
+</script>
 <script src="script/script_banner.js"></script>
 <script src="script/script_dropmenu.js"></script>
 </html>

@@ -1,0 +1,117 @@
+/* Thiết lập cơ bản cho trang */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7fa;
+    color: #333;
+}
+
+/* Container chính */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề chính */
+h1 {
+    font-size: 36px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Bao bọc bảng để tạo thanh cuộn ngang */
+.table-container {
+    overflow-x: auto; /* Cho phép cuộn ngang khi nội dung quá rộng */
+    -webkit-overflow-scrolling: touch; /* Cải thiện hiệu suất cuộn trên thiết bị di động */
+    margin-top: 20px;
+}
+
+/* Cải thiện bảng */
+table {
+    width: 100%; /* Chiếm toàn bộ chiều rộng container */
+    border-collapse: collapse;
+    table-layout: auto; /* Để các cột tự động điều chỉnh theo nội dung */
+}
+
+/* Cài đặt độ rộng tối thiểu cho từng cột */
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    white-space: nowrap; /* Ngăn không cho nội dung xuống dòng */
+}
+
+th:nth-child(1), td:nth-child(1) {
+    min-width: 60px; /* ID */
+}
+
+th:nth-child(2), td:nth-child(2) {
+    min-width: 150px; /* Người Gửi */
+}
+
+th:nth-child(3), td:nth-child(3) {
+    min-width: 120px; /* Điện Thoại Gửi */
+}
+
+th:nth-child(4), td:nth-child(4) {
+    min-width: 200px; /* Email Gửi */
+}
+
+th:nth-child(5), td:nth-child(5) {
+    min-width: 150px; /* Người Nhận */
+}
+
+th:nth-child(6), td:nth-child(6) {
+    min-width: 120px; /* Điện Thoại Nhận */
+}
+
+th:nth-child(7), td:nth-child(7) {
+    min-width: 200px; /* Địa Chỉ Nhận */
+}
+
+th:nth-child(8), td:nth-child(8) {
+    min-width: 150px; /* Thành Phố */
+}
+
+th:nth-child(9), td:nth-child(9) {
+    min-width: 120px; /* Ngày Giao */
+}
+
+th:nth-child(10), td:nth-child(10) {
+    min-width: 120px; /* Thời Gian Giao */
+}
+
+th:nth-child(11), td:nth-child(11) {
+    min-width: 200px; /* Lời Nhắn */
+    word-wrap: break-word; /* Cho phép nội dung xuống dòng nếu quá dài */
+    white-space: normal; /* Kết hợp với break-word để xuống dòng */
+}
+
+th:nth-child(12), td:nth-child(12) {
+    min-width: 120px; /* Tổng Tiền */
+    text-align: right; /* Căn phải cho dữ liệu số */
+}
+
+th:nth-child(13), td:nth-child(13) {
+    min-width: 150px; /* Ngày Tạo */
+}
+
+th:nth-child(14), td:nth-child(14) {
+    min-width: 150px; /* Hành Động */
+    text-align: center; /* Căn giữa */
+}
+
+
+/* Phản hồi khi có lỗi truy vấn */
+.error-message {
+    text-align: center;
+    font-size: 20px;
+    color: #ff4d4d;
+    margin-top: 20px;
+}

@@ -11,7 +11,14 @@ if (isset($_SESSION['selected_product'])) {
     exit();
 }
 
-// $discount_percentage = $original_price > 0 ? round((($original_price - $price) / $original_price) * 100) : 0;
+$total_amount = 0; 
+
+if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+    $_SESSION['cart'] = []; // Khởi tạo giỏ hàng nếu chưa có
+    echo "Giỏ hàng của bạn không có sản phẩm.";
+    exit(); // Dừng thực hiện nếu giỏ hàng trống
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -145,20 +152,30 @@ if (isset($_SESSION['selected_product'])) {
             <!-- Chi tiết đơn hàng -->
             <div class="order-details">
                 <h2>Chi tiết đơn hàng</h2>
-                <div class="order-item">
-                    <span>1 x <?php echo htmlspecialchars($product_name); ?></span>
-                    <span><?php echo number_format($price); ?> VND</span>
-                </div>
+                <?php
+                if (!empty($_SESSION['cart'])) {
+                    foreach ($_SESSION['cart'] as $product) {
+                        echo '<div class="order-item">';
+                        echo '<span>' . $product["quantity"] . ' x ' . htmlspecialchars($product["tenhoa"]) . '</span>';
+                        echo '<span>' . number_format($product["price"], 0, ',', '.') . ' VND</span>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo '<p>Giỏ hàng của bạn hiện không có sản phẩm nào.</p>';
+                }
+                ?>
                 <div class="total">
-                    <strong>Tổng cộng:</strong> <?php echo number_format($price); ?> VND
+                    <strong>Tổng cộng:</strong> <?php echo number_format($total_amount, 0, ',', '.') . ' VND'; ?>
                 </div>
                 <label for="terms">
                     <input type="checkbox" id="terms" name="terms" required>
                     Tôi đã đọc và đồng ý với Điều khoản & Điều kiện
                 </label>
                 <button type="submit">Xác nhận đơn hàng</button>
+                <a style="margin-top:25px;" href="main.php">Quay lại</a>
             </div>
         </form>
     </div>
 </body>
+
 </html>

@@ -6,6 +6,13 @@ if (isset($_SESSION['username'])) {
     header("Location: xuli_login.php");
     exit();
 }
+
+$totalQuantity = 0;
+if (isset($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $product) {
+        $totalQuantity += $product['quantity']; 
+    }
+}
 ?>
 <style>
 .cart {
@@ -346,6 +353,7 @@ body {
         <input type="text" name="class" placeholder="Tìm kiếm" required>
         <button type="submit">🔍</button>
     </form>
+    
     </div>
     <div class="account-info">
         <ul class="account-menu">
@@ -357,27 +365,27 @@ body {
             </li>
         </ul>
         <a href="cart.php">Giỏ hàng</a>
-            <div class="cart">
-                <span class="cart-icon">
-                    <i class="fas fa-shopping-bag"></i>
-                </span>
-                <span class="cart-badge">0</span>
-            </div> | 
+        <div class="cart">
+            <span class="cart-icon">
+                <i class="fas fa-shopping-bag"></i>
+            </span>
+            <span class="cart-badge"><?php echo $totalQuantity; ?></span>   
+        </div> | 
         <a href="#">Thanh toán</a>
     </div>
 </header>
 <div class="fixed-bar">
     <a href="tel:0918491941">
         <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Call">
-        091 849 1941
+        0379 706 289
     </a>
     <a href="https://zalo.me" target="_blank">
         <img src="https://cdn-icons-png.flaticon.com/512/3536/3536445.png" alt="Zalo">
         Nhắn Tin Zalo
     </a>
-    <a href="tel:0865160360">
+    <a href="tel:0379 706 289">
         <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Call">
-        086 516 0360
+        0379 706 289
     </a>
     <button class="chat-button" id="chatButton">Chat với chúng tôi</button>
 </div>

@@ -24,16 +24,24 @@
 }
 
 .banner-right {
-    /* max-width: 45%; */
-    max-width: 45%;
     position: relative;
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    height: 300px;  
 }
 
 .banner-right img {
     width: 100%;
-    height:100%;
-    border-radius: 10px;
-    object-fit: cover; 
+    height: 100%;  
+    object-fit: contain;  
+    display: none;
+    transition: opacity 1s ease;
+}
+
+.banner-right img.active {
+    display: block;
+    opacity: 1;
 }
 
 .prev, .next {

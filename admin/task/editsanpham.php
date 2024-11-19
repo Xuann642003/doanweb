@@ -166,7 +166,7 @@ $conn->close();
 <body>
     <div class="form-container">
         <h2>Chỉnh sửa sản phẩm</h2>
-        <form method="post">
+        <form method="post" action="./xuli_admin/update_product.php">
             <!-- Hidden input to pass the product ID -->
             <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
 

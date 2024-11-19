@@ -36,10 +36,12 @@
                     <li><a href="#" onclick="loadPage('task/nhaphang.php')">Nhập sản phẩm </a></li>
                     <!-- <li><a href="#" onclick="loadPage('task/editsanpham.php')">Cập nhật sản phẩm mới</a></li>
                     <li><a href="#" onclick="loadPage('task/xoasanpham.php')">Xóa sản phẩm mới</a></li> -->
-                    <li><a href="#" onclick="loadPage('task/themdanhmuc.php')">Danh mục</a></li>
+                    <li><a href="#" onclick="loadPage('task/tatcadanhmuc.php')">Tất cả danh mục</a></li>
+                    <li><a href="#" onclick="loadPage('task/themdanhmuc.php')">Thêm danh mục mới</a></li>
                 </ul>
             </li>
             <li><a href="#" onclick="loadPage('task/donhang.php')"><i class="fas fa-shopping-cart"></i> <span>Đơn hàng</span></a></li>
+            <li><a href="#" onclick="loadPage('task/banner.php')"><i class="fas fa-cog"></i> <span>Tin tức</span></a></li>
             <li><a href="#" onclick="loadContent('Cài đặt')"><i class="fas fa-cog"></i> <span>Cài đặt</span></a></li>
         </ul>
     </div>

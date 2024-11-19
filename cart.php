@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include 'xuli/connect.php';
@@ -6,12 +5,15 @@ include 'xuli/connect.php';
 if (!isset($_SESSION['tendangnhap'])) {
     $_SESSION['tendangnhap'] = $_SESSION['username'];
 }
-// Initialize the cart if it's not already set
+
 if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = array();
+    if (isset($_COOKIE['cart'])) {
+        $_SESSION['cart'] = json_decode($_COOKIE['cart'], true); 
+    } else {
+        $_SESSION['cart'] = array(); 
+    }
 }
 
-// Check if "add to cart" action is triggered
 if (isset($_GET['action']) && $_GET['action'] == "add") {
     $product_id = $_GET['id'];
     $sql = "SELECT * FROM sanpham WHERE id='$product_id'";
@@ -20,7 +22,6 @@ if (isset($_GET['action']) && $_GET['action'] == "add") {
     if ($result->num_rows > 0) {
         $product = $result->fetch_assoc();
 
-        // Add product to cart (or increment quantity if it’s already in the cart)
         if (isset($_SESSION['cart'][$product_id])) {
             $_SESSION['cart'][$product_id]['quantity']++;
         } else {
@@ -31,17 +32,20 @@ if (isset($_GET['action']) && $_GET['action'] == "add") {
                 "quantity" => 1
             );
         }
+
+        setcookie('cart', json_encode($_SESSION['cart']), time() + (86400 * 30), "/"); // 86400 = 1 day
     }
 }
 
-// Remove item from cart
 if (isset($_GET['action']) && $_GET['action'] == "remove") {
     $product_id = $_GET['id'];
     if (isset($_SESSION['cart'][$product_id])) {
         unset($_SESSION['cart'][$product_id]);
+        setcookie('cart', json_encode($_SESSION['cart']), time() + (86400 * 30), "/"); // 86400 = 1 day
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

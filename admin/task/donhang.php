@@ -1,65 +1,89 @@
 <?php
 session_start();
+
 include "../xuli_admin/connect.php";
 
-if (!isset($_SESSION['la_admin']) || $_SESSION['la_admin'] !== true) {
-    header('Location: dang_nhap.php');
-    exit();
+// Thực hiện truy vấn
+$sql = "SELECT * FROM orders ORDER BY created_at DESC"; 
+$result = $conn->query($sql);
+
+// Kiểm tra kết quả truy vấn
+if (!$result) {
+    die("Lỗi truy vấn: " . $conn->error);
 }
-
-$truy_van = "SELECT * FROM don_hang ORDER BY id_don_hang DESC";
-$ket_qua = $conn->query($truy_van);
 ?>
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quan ly Don Hang</title>
-    <link rel="stylesheet" href="style/admin_style.css">
+    <title>Danh Sách Đơn Hàng</title>
+    <link rel="stylesheet" href="./css/style_donhang.css"> <!-- Tùy chỉnh CSS của bạn -->
 </head>
 <body>
     <div class="container">
-        <h1>Quan ly Don Hang</h1>
-        <table border="1" cellspacing="0" cellpadding="10">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nguoi Gui</th>
-                    <th>Nguoi Nhan</th>
-                    <th>San Pham</th>
-                    <th>Gia (VND)</th>
-                    <th>Ngay Giao</th>
-                    <th>Trang Thai</th>
-                    <th>Hanh Dong</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($ket_qua->num_rows > 0) {
-                    while ($dong = $ket_qua->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $dong['id_don_hang'] . "</td>";
-                        echo "<td>" . htmlspecialchars($dong['ten_nguoi_gui']) . "</td>";
-                        echo "<td>" . htmlspecialchars($dong['ten_nguoi_nhan']) . "</td>";
-                        echo "<td>" . htmlspecialchars($dong['ten_san_pham']) . "</td>";
-                        echo "<td>" . number_format($dong['gia']) . "</td>";
-                        echo "<td>" . htmlspecialchars($dong['ngay_giao']) . "</td>";
-                        echo "<td>" . htmlspecialchars($dong['trang_thai']) . "</td>";
-                        echo "<td>
-                            <a href='xem_don_hang.php?id_don_hang=" . $dong['id_don_hang'] . "'>Xem</a> |
-                            <a href='sua_don_hang.php?id_don_hang=" . $dong['id_don_hang'] . "'>Sua</a> |
-                            <a href='xoa_don_hang.php?id_don_hang=" . $dong['id_don_hang'] . "' onclick='return confirm(\"Ban co chac muon xoa?\");'>Xoa</a>
-                        </td>";
-                        echo "</tr>";
+        <h1>Danh Sách Đơn Hàng</h1>
+
+        <!-- Bao bọc bảng trong div có class "table-container" -->
+        <div class="table-container">
+            <table border="1" cellspacing="0" cellpadding="10">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Người Gửi</th>
+                        <th>Điện Thoại Gửi</th>
+                        <th>Email Gửi</th>
+                        <th>Người Nhận</th>
+                        <th>Điện Thoại Nhận</th>
+                        <th>Địa Chỉ Nhận</th>
+                        <th>Thành Phố</th>
+                        <th>Ngày Giao</th>
+                        <th>Thời Gian Giao</th>
+                        <th>Lời Nhắn</th>
+                        <th>Tổng Tiền</th>
+                        <th>Ngày Tạo</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if ($result->num_rows > 0) {
+                        // Duyệt qua tất cả các đơn hàng và hiển thị
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row['id'] . "</td>";
+                            echo "<td>" . htmlspecialchars($row['sender_name']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['sender_phone']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['sender_email']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['receiver_name']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['receiver_phone']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['receiver_address']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['city']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['delivery_date']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['delivery_time']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['note']) . "</td>";
+                            echo "<td>" . number_format($row['total_amount'], 0, ',', '.') . " VND</td>";
+                            echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
+                            echo "<td>
+                                    <a href='xuli_admin/view_order.php?id=" . $row['id'] . "'>Xem</a> |
+                                    <a href='xuli_admin/edit_order.php?id=" . $row['id'] . "'>Sửa</a> |
+                                    <a href='xuli_admin/delete_order.php?id=" . $row['id'] . "' onclick='return confirm(\"Bạn có chắc muốn xóa đơn hàng này?\");'>Xóa</a>
+                                </td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='14'>Không có đơn hàng nào.</td></tr>";
                     }
-                } else {
-                    echo "<tr><td colspan='8'>Khong co don hang nao.</td></tr>";
-                }
-                ?>
-            </tbody>
-        </table>
+                    ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
+
+<?php
+// Đóng kết nối cơ sở dữ liệu sau khi sử dụng
+$conn->close();
+?>
+
