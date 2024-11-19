@@ -103,9 +103,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 <div class="checkout-container">
-    <div style="text-align: center; margin-bottom: 20px;">
-        <p><strong>Xin chào, <?php echo htmlspecialchars($hoten); ?> (<?php echo htmlspecialchars($tendangnhap); ?>)!</strong></p>
-    </div>
 
     <h1>Thông tin sản phẩm</h1>
     <table class="checkout-table">

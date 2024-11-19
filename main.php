@@ -371,33 +371,28 @@ body {
             </span>
             <span class="cart-badge"><?php echo $totalQuantity; ?></span>   
         </div> | 
-        <a href="#">Thanh toán</a>
     </div>
 </header>
 <div class="fixed-bar">
-    <a href="tel:0918491941">
+    <a href="tel:0373488101">
         <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Call">
-        0379 706 289
+        0373488101
     </a>
     <a href="https://zalo.me" target="_blank">
         <img src="https://cdn-icons-png.flaticon.com/512/3536/3536445.png" alt="Zalo">
         Nhắn Tin Zalo
     </a>
-    <a href="tel:0379 706 289">
+    <a href="tel:0373488101">
         <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Call">
-        0379 706 289
+        0373488101
     </a>
     <button class="chat-button" id="chatButton">Chat với chúng tôi</button>
 </div>
-
 <div id="chatBox">
         <div id="chatHeader">Hỗ trợ trực tuyến</div>
         <div id="chatContent">
             <div class="message admin">
                 <p>Chào bạn! Làm thế nào để chúng tôi có thể giúp bạn?</p>
-            </div>
-            <div class="message user">
-                <p>Xin chào! Tôi cần trợ giúp về sản phẩm.</p>
             </div>
         </div>
         <div id="chatInput">

@@ -48,43 +48,29 @@
 <div class="footer">
     <div class="column logo">
         <img src="image/logo.jpg">
-        <p>Hotline: 1900 006 004 - 0379 706 289</p>
-        <p>Email: thuylinh@flowercorner.vn</p>
+        <p>Hotline: 0373488101</p>
+        <p>Email: thuylinh2605@gmail.com</p>
         <div class="scanme">
-            <img src="image/qr.png" alt="QR Code">
+            <img src="image/facebookqrcode.jpg" alt="QR Code">
             <p>Scan me</p>
         </div>
     </div>
     <div class="column">
         <h3>CHĂM SÓC KHÁCH HÀNG</h3>
-        <p>Giới Thiệu</p>
         <p><a style="text-decoration:none" href="lienhe.php">Liên Hệ</a></p>
-        <p>Chính Sách Vận Chuyển</p>
-        <p>Câu Hỏi Thường Gặp</p>
-        <p>Hình Thức Thanh Toán</p>
-        <p>Bảo Mật Thông Tin</p>
-        <p>Chính Sách Hoàn Tiền</p>
-        <p>Xử Lý Khiếu Nại</p>
-        <p>Tại Sao Nên Chọn FlowerCorner.vn</p>
-        <p>Blog</p>
     </div>
     <div class="column">
         <h3>THEO DÕI</h3>
         <div class="social-icons">
             <a href="#" style="font-size:13px;">Facebook</a>
-            <a href="#" style="font-size:13px">Twitter</a>
             <a href="#" style="font-size:13px">Instagram</a>
-            <a href="#" style="font-size:13px">LinkedIn</a>
             <a href="#" style="font-size:13px">YouTube</a>
         </div>
     </div>
     <div class="column">
         <h3>SHOP HOA THUYLINHFLOWER</h3>
-        <p><strong>Cửa hàng chính:</strong> Đinh Xá , Văn Tự , Thường Tín , Hà Nội</p>
-        <p><strong>Cửa Hàng TP.HCM:</strong> 225/3 Nguyễn Đình Chiểu, Phường 5, Quận 3, TP.HCM</p>
-        <p><strong>Chi nhánh Hà Nội:</strong> 65 Trần Phú, Ba Đình, Hà Nội</p>
-        <p>CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ ZAS</p>
-        <p>Mã số thuế: 0313630426</p>
+        <p><strong>Cửa hàng chính:</strong> Số 3 ngõ 64/70 Hưng Thịnh, Yên Sở, Hoàng Mai, Hà Nội</p>
+        <p><strong>Cửa Hàng Phú Thọ:</strong> Khu 1, Xã Vĩnh Chân, Huyện Hạ Hòa, Tỉnh Phú Thọ</p>
     </div>
 </div>
 

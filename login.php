@@ -52,9 +52,6 @@ input[type="submit"]:hover {
                 <input type="password" id="myInput1" name="password" placeholder="Type your password ..." required>
                 <i class="fa-solid fa-eye" id="togglePassword" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
             </div>
-            <div class="input-container forget-password">
-                <a href="#">Forget password?</a>
-            </div>
             <input type="submit" value="LOGIN">
             <!-- <input type="button" value="REGISTER">         -->
             <div class="register">

@@ -144,12 +144,6 @@ foreach ($_SESSION['selected_products'] as $product) {
                 <div class="total">
                     <strong>Tổng cộng:</strong> <?php echo number_format($total_amount); ?> VND
                 </div>
-
-                <label for="terms">
-                    <input type="checkbox" id="terms" name="terms" required>
-                    Tôi đã đọc và đồng ý với Điều khoản & Điều kiện
-                </label>
-
                 <button type="submit">Xác nhận đơn hàng</button>
                 <a href="cart.php" class="back-to-cart">Quay lại </a>
             </div>

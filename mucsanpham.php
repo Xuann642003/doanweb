@@ -257,7 +257,6 @@ body {
                 </span>
                 <span class="cart-badge">0</span>
             </div> | 
-        <a href="#">Thanh toán</a>
     </div>
 </header>
 
