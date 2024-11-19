@@ -391,14 +391,19 @@ body {
 </div>
 
 <div id="chatBox">
-    <div id="chatHeader">Hỗ trợ trực tuyến</div>
-    <div id="chatContent">
-        <p>Chào bạn! Làm thế nào để chúng tôi có thể giúp bạn?</p>
-    </div>
-    <div id="chatInput">
-        <input type="text" placeholder="Nhập tin nhắn...">
-        <button>Gửi</button>
-    </div>
+        <div id="chatHeader">Hỗ trợ trực tuyến</div>
+        <div id="chatContent">
+            <div class="message admin">
+                <p>Chào bạn! Làm thế nào để chúng tôi có thể giúp bạn?</p>
+            </div>
+            <div class="message user">
+                <p>Xin chào! Tôi cần trợ giúp về sản phẩm.</p>
+            </div>
+        </div>
+        <div id="chatInput">
+            <input type="text" placeholder="Nhập tin nhắn..." id="messageInput">
+            <button id="sendButton">Gửi</button>
+        </div>
 </div>
 
 <script>
@@ -414,6 +419,46 @@ body {
             }
         });
     });
+    const chatContent = document.getElementById('chatContent');
+        chatContent.scrollTop = chatContent.scrollHeight;
+
+        document.getElementById('sendButton').addEventListener('click', function () {
+    const input = document.getElementById('messageInput');
+    const message = input.value.trim();
+
+    if (message !== '') {
+        // Hiển thị tin nhắn của người dùng
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('message', 'user');
+        userMessage.innerHTML = `<p>${message}</p>`;
+        document.getElementById('chatContent').appendChild(userMessage);
+
+        // Cuộn xuống cuối
+        document.getElementById('chatContent').scrollTop = document.getElementById('chatContent').scrollHeight;
+
+        // Gửi tin nhắn đến server qua AJAX
+        fetch('save_message.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `message=${encodeURIComponent(message)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log("Tin nhắn đã được lưu!");
+            } else {
+                console.error("Lỗi: ", data.error);
+            }
+        })
+        .catch(error => console.error("Lỗi kết nối: ", error));
+
+        // Xóa nội dung trong input
+        input.value = '';
+    }
+});
+
+    
+
 </script>
 
 

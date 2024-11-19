@@ -107,10 +107,6 @@
     }
 }
 
-
-
-
-
 </style>
 <?php include'xuli/connect.php'; ?>
 

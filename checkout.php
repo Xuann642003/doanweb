@@ -8,9 +8,6 @@ if (!isset($_SESSION['tendangnhap'])) {
 $tendangnhap = $_SESSION['tendangnhap'];
 $hoten = $_SESSION['hoten'] ?? 'Guest'; 
 
-
-
-
 $total_amount = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include 'xuli/connect.php'; // Kết nối cơ sở dữ liệu
@@ -22,30 +19,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $soluong = $product["quantity"];
         $tong = $gia * $soluong;
 
-        // Trừ số lượng tồn kho
         $update_stock_query = "UPDATE sanpham SET soluongton = soluongton - ? WHERE id = ?";
         $stmt_stock = $conn->prepare($update_stock_query);
         $stmt_stock->bind_param("ii", $soluong, $id);
         $stmt_stock->execute();
 
-        // if ($stmt_stock->affected_rows > 0) {
-        //     // Ghi đơn hàng vào bảng `orders` nếu cần
-        //     $query = "INSERT INTO orders (tensanpham, gia, soluong, tong, ngaydat, tendangnhap) VALUES (?, ?, ?, ?, ?, ?)";
-        //     $stmt = $conn->prepare($query);
-        //     $stmt->bind_param("siidss", $tensanpham, $gia, $soluong, $tong, $ngaydat, $tendangnhap);
-        //     $stmt->execute();
-        // } else {
-        //     echo "Lỗi: Không thể trừ số lượng tồn cho sản phẩm $tensanpham.";
-        // }
     }
-
-    // Xóa giỏ hàng sau khi thanh toán thành công
-    
+    $_SESSION['selected_products'] = $_SESSION['cart'];  // Lưu giỏ hàng vào session
 
     header("Location: ordertoship.php");
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

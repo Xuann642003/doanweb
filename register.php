@@ -176,21 +176,18 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
 if (isset($_POST['submit'])) {
     include "xuli/connect.php"; 
 
-    // Lấy giá trị từ form và thoát các ký tự đặc biệt
     $hoten = $conn->real_escape_string($_POST['hoten']);
     $tendangnhap = $conn->real_escape_string($_POST['tendangnhap']);
-    $matkhau = $conn->real_escape_string($_POST['matkhau']);  // Lưu mật khẩu dưới dạng văn bản thuần
+    $matkhau = $conn->real_escape_string($_POST['matkhau']); 
     $namsinh = $conn->real_escape_string($_POST['namsinh']);
     $email = $conn->real_escape_string($_POST['email']);
     $sodienthoai = $conn->real_escape_string($_POST['sodienthoai']);
     $diachi = $conn->real_escape_string($_POST['diachi']);
 
-    // Chèn dữ liệu vào bảng nguoidung
     $sql_nguoidung = "INSERT INTO nguoidung (hoten, tendangnhap, matkhau, namsinh, email, sodienthoai, diachi)
                       VALUES ('$hoten', '$tendangnhap', '$matkhau', '$namsinh', '$email', '$sodienthoai', '$diachi')";
 
     if ($conn->query($sql_nguoidung) === TRUE) {
-        // Nếu việc chèn vào nguoidung thành công, chèn thêm vào bảng dangki
         $sql_dangki = "INSERT INTO dangki (tendangnhap, matkhau) VALUES ('$tendangnhap', '$matkhau')";
         
         if ($conn->query($sql_dangki) === TRUE) {
@@ -202,7 +199,6 @@ if (isset($_POST['submit'])) {
         echo "<script>alert('Lỗi khi chèn vào bảng nguoidung: " . $conn->error . "');</script>";
     }
 
-    // Đóng kết nối
     $conn->close();
 }
 ?>

@@ -18,13 +18,12 @@ if (!$result) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh Sách Đơn Hàng</title>
-    <link rel="stylesheet" href="./css/style_donhang.css"> <!-- Tùy chỉnh CSS của bạn -->
+    <link rel="stylesheet" href="./css/style_donhang.css"> 
 </head>
 <body>
     <div class="container">
         <h1>Danh Sách Đơn Hàng</h1>
 
-        <!-- Bao bọc bảng trong div có class "table-container" -->
         <div class="table-container">
             <table border="1" cellspacing="0" cellpadding="10">
                 <thead>

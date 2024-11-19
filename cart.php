@@ -33,7 +33,19 @@ if (isset($_GET['action']) && $_GET['action'] == "add") {
             );
         }
 
-        setcookie('cart', json_encode($_SESSION['cart']), time() + (86400 * 30), "/"); // 86400 = 1 day
+        // Cập nhật cookie giỏ hàng (nếu dùng)
+        setcookie('cart', json_encode($_SESSION['cart']), time() + (86400 * 30), "/");
+    }
+}
+
+
+if (isset($_GET['action']) && $_GET['action'] == "update") {
+    $product_id = $_GET['id'];
+    $quantity = max(1, intval($_GET['quantity'])); // Số lượng tối thiểu là 1
+
+    if (isset($_SESSION['cart'][$product_id])) {
+        $_SESSION['cart'][$product_id]['quantity'] = $quantity;
+        setcookie('cart', json_encode($_SESSION['cart']), time() + (86400 * 30), "/");
     }
 }
 
@@ -164,11 +176,20 @@ if (isset($_GET['action']) && $_GET['action'] == "remove") {
             echo '<tr class="cart-item">';
             echo '<td><img src="' . $product["image"] . '" alt="' . $product["tenhoa"] . '"><br>' . $product["tenhoa"] . '</td>';
             echo '<td>' . number_format($product["price"], 0, ',', '.') . ' VND</td>';
-            echo '<td>' . $product["quantity"] . '</td>';
+            echo '<td>
+                    <form method="GET" action="cart.php">
+                        <input type="hidden" name="action" value="update">
+                        <input type="hidden" name="id" value="' . $id . '">
+                        <button type="button" onclick="updateQuantity(this, -1)">-</button>
+                        <input type="number" name="quantity" value="' . $product["quantity"] . '" min="1" onchange="this.form.submit()">
+                        <button type="button" onclick="updateQuantity(this, 1)">+</button>
+                    </form>
+                  </td>';
             echo '<td>' . number_format($item_total, 0, ',', '.') . ' VND</td>';
             echo '<td><a href="cart.php?action=remove&id=' . $id . '"><button class="remove-button">Remove</button></a></td>';
             echo '</tr>';
         }
+        
 
         echo '</table>';
     } else {
@@ -187,6 +208,19 @@ if (isset($_GET['action']) && $_GET['action'] == "remove") {
 </div>
 
 </body>
+<script>
+function updateQuantity(button, change) {
+    const input = button.parentNode.querySelector('input[name="quantity"]');
+    let currentQuantity = parseInt(input.value);
+    if (!isNaN(currentQuantity)) {
+        currentQuantity += change;
+        if (currentQuantity < 1) currentQuantity = 1; // Số lượng tối thiểu là 1
+        input.value = currentQuantity;
+        input.form.submit(); // Gửi form ngay sau khi cập nhật số lượng
+    }
+}
+</script>
+
 </html>
 
 <?php $conn->close(); ?>

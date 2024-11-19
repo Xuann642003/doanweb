@@ -23,7 +23,7 @@
                 <a onclick="toggleSubmenu('customer-submenu')"><i class="fas fa-user"></i> <span>Quản lý khách hàng</span></a>
                 <ul class="submenu" id="customer-submenu">
                     <li><a href="#" onclick="loadPage('task/danhsachkhachhang.php')">Danh sách khách hàng</a></li>
-                    <li><a href="#" onclick="loadContent('Phản hồi khách hàng')">Phản hồi khách hàng</a></li>
+                    <li><a href="#" onclick="loadPage('task/chat.php')">Phản hồi khách hàng</a></li>
                 </ul>
             </li>
             <li>

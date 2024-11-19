@@ -1,24 +1,17 @@
 <?php
 session_start();
-if (isset($_SESSION['selected_product'])) {
-    $product = $_SESSION['selected_product'];
-    $product_id = $product['id'];
-    $product_name = $product['name'];
-    $price = $product['price'];
-    $original_price = $product['original_price'];
-} else {
-    echo "Không có sản phẩm được chọn.";
+
+if (!isset($_SESSION['selected_products']) || empty($_SESSION['selected_products'])) {
+    echo "Không có sản phẩm nào để đặt hàng.";
     exit();
 }
 
-$total_amount = 0; 
+$total_amount = 0;
 
-if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
-    $_SESSION['cart'] = []; // Khởi tạo giỏ hàng nếu chưa có
-    echo "Giỏ hàng của bạn không có sản phẩm.";
-    exit(); // Dừng thực hiện nếu giỏ hàng trống
+foreach ($_SESSION['selected_products'] as $product) {
+    $item_total = $product["price"] * $product["quantity"];
+    $total_amount += $item_total;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +26,6 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
     <div class="container">
         <h1>Thông tin đơn hàng</h1>
         <form action="submit_order.php" method="POST" class="order-form">
-            <!-- Thông tin người gửi -->
             <div class="section">
                 <h2>Thông tin người gửi</h2>
                 <label>Họ tên *</label>
@@ -46,7 +38,6 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                 <input type="email" name="sender_email">
             </div>
 
-            <!-- Thông tin người nhận -->
             <div class="section">
                 <h2>Thông tin người nhận</h2>
                 <label>Họ tên *</label>
@@ -123,12 +114,7 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                     <option value="Vĩnh Long">Vĩnh Long</option>
                     <option value="Vĩnh Phúc">Vĩnh Phúc</option>
                     <option value="Yên Bái">Yên Bái</option>
-                </select>
-                
-                <!-- <label>Quận / Huyện *</label>
-                <select name="district" required>
-                    <option value="Quận 1">Quận 1</option>
-                </select> -->
+                </select>               
                 
                 <label>Ngày giao hàng *</label>
                 <input type="date" name="delivery_date" required>
@@ -138,7 +124,6 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                     <option value="8:00 - 12:00">Từ 8:00 - 12:00</option>
                     <option value="12:00 - 17:00">Từ 12:00 - 17:00</option>
                     <option value="17:00 - 20:00">Từ 17:00 - 20:00</option>
-                    <!-- Add other options as needed -->
                 </select>
                 
                 <label>Lời nhắn [cho người nhận]</label>
@@ -148,34 +133,27 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                 <textarea name="note" rows="4"></textarea>
             </div>
 
-            <!-- Chi tiết đơn hàng -->
-            <!-- Chi tiết đơn hàng -->
             <div class="order-details">
                 <h2>Chi tiết đơn hàng</h2>
-                <?php
-                if (!empty($_SESSION['cart'])) {
-                    foreach ($_SESSION['cart'] as $product) {
-                        echo '<div class="order-item">';
-                        echo '<span>' . $product["quantity"] . ' x ' . htmlspecialchars($product["tenhoa"]) . '</span>';
-                        echo '<span>' . number_format($product["price"], 0, ',', '.') . ' VND</span>';
-                        echo '</div>';
-                    }
-                } else {
-                    echo '<p>Giỏ hàng của bạn hiện không có sản phẩm nào.</p>';
-                }
-                ?>
-                <div class="total">
-                    <strong>Tổng cộng:</strong> <?php echo number_format($total_amount, 0, ',', '.') . ' VND'; ?>
+                <?php foreach ($_SESSION['selected_products'] as $product): ?>
+                <div class="order-item">
+                    <span><?php echo $product["quantity"]; ?> x <?php echo htmlspecialchars($product["tenhoa"]); ?></span>
+                    <span><?php echo number_format($product["price"]); ?> VND</span>
                 </div>
+                <?php endforeach; ?>
+                <div class="total">
+                    <strong>Tổng cộng:</strong> <?php echo number_format($total_amount); ?> VND
+                </div>
+
                 <label for="terms">
                     <input type="checkbox" id="terms" name="terms" required>
                     Tôi đã đọc và đồng ý với Điều khoản & Điều kiện
                 </label>
+
                 <button type="submit">Xác nhận đơn hàng</button>
-                <a style="margin-top:25px;" href="main.php">Quay lại</a>
+                <a href="cart.php" class="back-to-cart">Quay lại </a>
             </div>
         </form>
     </div>
 </body>
-
 </html>
