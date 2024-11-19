@@ -38,7 +38,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php
+        <?php
             include "../xuli_admin/connect.php";
 
             $sql = "SELECT id, loaihoa FROM loaihoa";
@@ -50,17 +50,18 @@
                             <td>{$row['id']}</td>
                             <td>{$row['loaihoa']}</td>
                             <td>
-                                <a href='xuli_admin/sua_loaihoa.php?id={$row['id']}'>Sửa</a> | 
-                                <a href='xuli_admin/xoa_loaihoa.php?id={$row['id']}' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\");'>Xóa</a>
+                                <a href='#' onclick=\"loadPage('xuli_admin/sua_loaihoa.php?id={$row['id']}')\">Sửa</a> | 
+                                <a href='#' onclick=\"if (confirm('Bạn có chắc chắn muốn xóa?')) { loadPage('xuli_admin/xoa_loaihoa.php?id={$row['id']}'); }\">Xóa</a>
                             </td>
-                          </tr>";
+                        </tr>";
                 }
             } else {
                 echo "<tr><td colspan='3'>Không có dữ liệu</td></tr>";
             }
 
             $conn->close();
-            ?>
+        ?>
+
         </tbody>
     </table>
 </body>

@@ -38,6 +38,7 @@ $result = $conn->query($sql);
             <th>Email</th>
             <th>Số điện thoại</th>
             <th>Địa chỉ</th>
+            <th>Actions</th> 
         </tr>
         <?php
         if ($result->num_rows > 0) {
@@ -51,10 +52,14 @@ $result = $conn->query($sql);
                 echo "<td>" . $row["email"] . "</td>";
                 echo "<td>" . $row["sodienthoai"] . "</td>";
                 echo "<td>" . $row["diachi"] . "</td>";
+                echo "<td>
+                        <a href='#' onclick=\"loadPage('xuli_admin/sua_khachhang.php?id={$row['id']}')\">Sửa</a> | 
+                        <a href='#' onclick=\"if (confirm('Bạn có chắc chắn muốn xóa?')) { loadPage('xuli_admin/xoa_khachhang.php?id={$row['id']}'); }\">Xóa</a>
+                      </td>";
                 echo "</tr>";
             }
         } else {
-            echo "<tr><td colspan='8'>No data available</td></tr>";
+            echo "<tr><td colspan='9'>No data available</td></tr>";
         }
         ?>
     </table>

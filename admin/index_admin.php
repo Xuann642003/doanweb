@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="css/style_index.css">
 </head>
 <body>
-
-    <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="toggle-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
         <div class="logo">THUYLINHFLOWER</div>
@@ -33,32 +31,23 @@
                 <ul class="submenu" id="product-submenu">
                     <li><a href="#" onclick="loadPage('task/tatcasanpham.php')">Tất cả sản phẩm</a></li>
                     <li><a href="#" onclick="loadPage('task/themsanphammoi.php')">Thêm sản phẩm mới</a></li>
-                    <li><a href="#" onclick="loadPage('task/nhaphang.php')">Nhập sản phẩm </a></li>
-                    <!-- <li><a href="#" onclick="loadPage('task/editsanpham.php')">Cập nhật sản phẩm mới</a></li>
-                    <li><a href="#" onclick="loadPage('task/xoasanpham.php')">Xóa sản phẩm mới</a></li> -->
+                    <!-- <li><a href="#" onclick="loadPage('task/nhaphang.php')">Nhập sản phẩm </a></li> -->
                     <li><a href="#" onclick="loadPage('task/tatcadanhmuc.php')">Tất cả danh mục</a></li>
                     <li><a href="#" onclick="loadPage('task/themdanhmuc.php')">Thêm danh mục mới</a></li>
                 </ul>
             </li>
             <li><a href="#" onclick="loadPage('task/donhang.php')"><i class="fas fa-shopping-cart"></i> <span>Đơn hàng</span></a></li>
-            <li><a href="#" onclick="loadPage('task/banner.php')"><i class="fas fa-cog"></i> <span>Tin tức</span></a></li>
+            <li><a href="#" onclick="loadPage('task/banner.php')"><i class="fa-regular fa-newspaper"></i> <span>Tin tức</span></a></li>
             <li><a href="#" onclick="loadContent('Cài đặt')"><i class="fas fa-cog"></i> <span>Cài đặt</span></a></li>
         </ul>
     </div>
 
-    <!-- Main Content Area -->
     <div class="main-content" id="main-content">
         <header>
             <h2>Bảng điều khiển</h2>
-            <!-- <div>
-                <i class="fas fa-bell"></i> 5
-                <i class="fas fa-envelope"></i> 15
-                <i class="fas fa-user-circle"></i>
-            </div> -->
         </header>
 
         <div id="content-area">
-            <!-- Nội dung sẽ được hiển thị tại đây -->
             <p>Chào mừng đến với trang quản trị!</p>
         </div>
     </div>
@@ -69,7 +58,6 @@
     sidebar.classList.toggle("collapsed");
     document.getElementById("main-content").classList.toggle("collapsed");
 
-        // Đóng tất cả submenu khi thanh bên được thu nhỏ
         if (sidebar.classList.contains("collapsed")) {
             const submenus = document.querySelectorAll(".submenu");
             submenus.forEach(submenu => {

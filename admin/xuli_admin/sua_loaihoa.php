@@ -97,7 +97,7 @@ $conn->close();
             <input type="text" id="loaihoa" name="loaihoa" value="<?= $hoa['loaihoa'] ?>" required>
             <button type="submit">Cập nhật</button>
         </form>
-        <a class="back-link" href="../index_admin.php">Quay lại danh sách</a>
+        <a class="back-link" href="./index_admin.php">Quay lại danh sách</a>
     </div>
 </body>
 </html>

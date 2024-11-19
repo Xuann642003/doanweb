@@ -3,7 +3,7 @@ session_start();
 include "../xuli_admin/connect.php";
 
 // Fetch the latest orders (assuming orders are grouped by timestamp)
-$query = "SELECT * FROM orders ORDER BY ngaydat DESC LIMIT 10"; // Adjust limit if needed
+$query = "SELECT * FROM orders ORDER BY created_at DESC LIMIT 10"; // Adjust limit if needed
 $result = $conn->query($query);
 
 if ($result->num_rows > 0) {
@@ -13,10 +13,10 @@ if ($result->num_rows > 0) {
     exit();
 }
 
-// Calculate the total sales amount
+// Calculate the total sales amount directly from the orders table
 $total_sales = 0;
 foreach ($orders as $order) {
-    $total_sales += $order["tong"];
+    $total_sales += $order["total_amount"];  // Assuming the column for total amount is 'total_amount'
 }
 ?>
 
@@ -67,27 +67,20 @@ foreach ($orders as $order) {
     <table class="order-table">
         <tr>
             <th>Tên khách hàng</th>
-            <th>Mã đơn hàng</th>
-            <th>Tên sản phẩm</th>
-            <th>Giá</th>
-            <th>Số lượng</th>
+            <th>Mã đơn hàng</th>       
             <th>Tổng</th>
             <th>Ngày đặt</th>           
         </tr>
         <?php
         foreach ($orders as $order) {
             echo '<tr>';
-            echo '<td>'. $order["tendangnhap"]. '</td>';
+            echo '<td>'. $order["sender_name"]. '</td>'; 
             echo '<td>' . $order["id"] . '</td>';
-            echo '<td>' . $order["tensanpham"] . '</td>';
-            echo '<td>' . number_format($order["gia"], 0, ',', '.') . ' VND</td>';
-            echo '<td>' . $order["soluong"] . '</td>';
-            echo '<td>' . number_format($order["tong"], 0, ',', '.') . ' VND</td>';
-            echo '<td>' . $order["ngaydat"] . '</td>';
+            echo '<td>' . number_format($order["total_amount"], 0, ',', '.') . ' VND</td>';
+            echo '<td>' . $order["created_at"] . '</td>'; 
             echo '</tr>';
         }
         ?>
-        <!-- Row for total sales amount -->
         <tr>
             <td colspan="5" style="text-align: right; font-weight: bold;">Tổng tiền</td>
             <td colspan="2" style="font-weight: bold;"><?= number_format($total_sales, 0, ',', '.') ?> VND</td>
