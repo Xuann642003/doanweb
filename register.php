@@ -144,7 +144,7 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
 
                 <div class="input-container">
                     <i class="fa-solid fa-phone"></i>
-                    <input type="text" name="sodienthoai" placeholder="Số Điện Thoại" required>
+                    <input type="number" name="sodienthoai" placeholder="Số Điện Thoại" required>
                 </div>
 
                 <div class="input-container">
@@ -174,32 +174,62 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
 
 <?php
 if (isset($_POST['submit'])) {
-    include "xuli/connect.php"; 
+    include "xuli/connect.php";
 
-    $hoten = $conn->real_escape_string($_POST['hoten']);
-    $tendangnhap = $conn->real_escape_string($_POST['tendangnhap']);
-    $matkhau = $conn->real_escape_string($_POST['matkhau']); 
-    $namsinh = $conn->real_escape_string($_POST['namsinh']);
-    $email = $conn->real_escape_string($_POST['email']);
-    $sodienthoai = $conn->real_escape_string($_POST['sodienthoai']);
-    $diachi = $conn->real_escape_string($_POST['diachi']);
+    $hoten = trim($_POST['hoten']);
+    $tendangnhap = trim($_POST['tendangnhap']);
+    $matkhau = trim($_POST['matkhau']);
+    $namsinh = trim($_POST['namsinh']);
+    $email = trim($_POST['email']);
+    $sodienthoai = trim($_POST['sodienthoai']);
+    $diachi = trim($_POST['diachi']);
 
-    $sql_nguoidung = "INSERT INTO nguoidung (hoten, tendangnhap, matkhau, namsinh, email, sodienthoai, diachi)
-                      VALUES ('$hoten', '$tendangnhap', '$matkhau', '$namsinh', '$email', '$sodienthoai', '$diachi')";
-
-    if ($conn->query($sql_nguoidung) === TRUE) {
-        $sql_dangki = "INSERT INTO dangki (tendangnhap, matkhau) VALUES ('$tendangnhap', '$matkhau')";
-        
-        if ($conn->query($sql_dangki) === TRUE) {
-            echo "<script>alert('Đăng ký thành công!');</script>";
-        } else {
-            echo "<script>alert('Lỗi khi chèn vào bảng dangki: " . $conn->error . "');</script>";
-        }
+    if (strlen($sodienthoai) != 10 || !is_numeric($sodienthoai)) {
+        echo "<script>alert('Số điện thoại phải chứa đúng 10 chữ số!');</script>";
     } else {
-        echo "<script>alert('Lỗi khi chèn vào bảng nguoidung: " . $conn->error . "');</script>";
+        if (empty($hoten) || empty($tendangnhap) || empty($matkhau) || empty($namsinh) || empty($email) || empty($sodienthoai) || empty($diachi)) {
+            echo "<script>alert('Không được để trống hoặc nhập toàn khoảng trắng!');</script>";
+        } elseif (preg_match('/\s/', $tendangnhap)) {
+            echo "<script>alert('Tên đăng nhập không được chứa khoảng trắng!');</script>";
+        } elseif (preg_match('/\s/', $matkhau)) {
+            echo "<script>alert('Mật khẩu không được chứa khoảng trắng!');</script>";
+        } else {
+            $sql_check = "SELECT * FROM nguoidung WHERE tendangnhap = '$tendangnhap'";
+            $result_check = $conn->query($sql_check);
+
+            if ($result_check->num_rows > 0) {
+                echo "<script>alert('Tên đăng nhập đã tồn tại');</script>";
+            } else {
+                $hoten = $conn->real_escape_string($hoten);
+                $tendangnhap = $conn->real_escape_string($tendangnhap);
+                $matkhau = $conn->real_escape_string($matkhau);
+                $namsinh = $conn->real_escape_string($namsinh);
+                $email = $conn->real_escape_string($email);
+                $sodienthoai = $conn->real_escape_string($sodienthoai);
+                $diachi = $conn->real_escape_string($diachi);
+    
+                $sql_nguoidung = "INSERT INTO nguoidung (hoten, tendangnhap, matkhau, namsinh, email, sodienthoai, diachi)
+                                  VALUES ('$hoten', '$tendangnhap', '$matkhau', '$namsinh', '$email', '$sodienthoai', '$diachi')";
+    
+                if ($conn->query($sql_nguoidung) === TRUE) {
+                    $sql_dangki = "INSERT INTO dangki (tendangnhap, matkhau) VALUES ('$tendangnhap', '$matkhau')";
+    
+                    if ($conn->query($sql_dangki) === TRUE) {
+                        echo "<script>alert('Đăng ký thành công!');</script>";
+                    } else {
+                        echo "<script>alert('Lỗi khi chèn vào bảng dangki: " . $conn->error . "');</script>";
+                    }
+                } else {
+                    echo "<script>alert('Lỗi khi chèn vào bảng nguoidung: " . $conn->error . "');</script>";
+                }
+            }
+        }
     }
 
     $conn->close();
 }
 ?>
+
+
+
 
